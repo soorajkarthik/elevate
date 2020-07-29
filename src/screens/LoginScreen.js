@@ -6,7 +6,7 @@ import {
   StyleSheet,
   StatusBar,
 } from 'react-native';
-import {SimpleAnimation} from 'react-native-simple-animations';
+import * as Animatable from 'react-native-animatable';
 import {CONTAINER_BACKGROUND_COLOR} from '../constants/Colors';
 import LoginForm from '../components/LoginForm';
 
@@ -15,14 +15,17 @@ class LoginScreen extends Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="height">
         <StatusBar barStyle="light-content" />
-        <View style={styles.logoContainer}>
+        <Animatable.View style={styles.logoContainer} animation="bounceInDown" duration={3000}>
           <Image source={require('../assets/logo.png')} style={styles.logo} />
-        </View>
-        <SimpleAnimation>
-          <View style={styles.formContainer}>
-            <LoginForm />
-          </View>
-        </SimpleAnimation>
+        </Animatable.View>
+        <Animatable.View
+          style={styles.formContainer}
+          animation="bounceInUp"
+          delay={200}
+          duration={1500}
+          easing="ease-in-cubic">
+          <LoginForm />
+        </Animatable.View>
       </KeyboardAvoidingView>
     );
   }
@@ -31,6 +34,7 @@ class LoginScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     height: '100%',
+    backgroundColor: 'white',
   },
 
   logoContainer: {
