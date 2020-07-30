@@ -18,9 +18,9 @@ class LoginScreen extends Component {
         <StatusBar barStyle="dark-content" />
         <Animatable.View
           style={styles.headerContainer}
-          animation="bounceInDown"
-          duration={3000}>
-          <Image source={require('../assets/logo.png')} style={styles.logo} />
+          animation="fadeInDown"
+          duration={2000}>
+          <Image source={require('../assets/logoPlain.png')} style={styles.logo} />
           <Text style={styles.text}>Welcome back!</Text>
         </Animatable.View>
         <KeyboardAvoidingView
@@ -31,8 +31,8 @@ class LoginScreen extends Component {
             style={styles.formContainer}
             animation="bounceInUp"
             delay={200}
-            duration={1500}
-            easing="ease-in-cubic">
+            duration={3000}
+            easing="ease">
             <LoginForm />
           </Animatable.View>
         </KeyboardAvoidingView>
@@ -55,9 +55,9 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    transform: [{scale: 0.8}],
-    maxWidth: 450,
-    maxHeight: 150,
+    transform: [{scale: 0.7}],
+    maxWidth: 400,
+    maxHeight: 100,
   },
 
   text: {

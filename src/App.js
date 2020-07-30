@@ -1,12 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import SignUpScreen from './screens/SignUpScreen';
-import LoginScreen from './screens/LoginScreen';
-
+import * as Screen from './screens/PasswordResetScreen'
 const App = () => {
   return (
     <View>
-      <SignUpScreen />
+      <Screen.default />
     </View>
   );
 };
