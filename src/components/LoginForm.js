@@ -11,41 +11,44 @@ import * as Colors from '../constants/Colors';
 class LoginForm extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <TextInput
           style={styles.input}
-          keyboardType='email-address'
-          placeholder='Email'
+          keyboardType="email-address"
+          placeholder="Email"
           placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
-          autoCapitalize='none'
+          autoCapitalize="none"
           autoCorrect={false}
-          returnKeyType='next'
+          returnKeyType="next"
           onSubmitEditing={() => this.passwordInput.focus()}
+          ref={(input) => (this.emailInput = input)}
         />
 
         <TextInput
           style={styles.input}
           secureTextEntry
-          placeholder='Password'
+          placeholder="Password"
           placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
-          returnKeyType='go'
+          returnKeyType="go"
+          onSubmitEditing={() => console.log('pressed')} // Call login method
           ref={(input) => (this.passwordInput = input)}
         />
 
+        <TouchableOpacity style={styles.passwordResetButton}>
+          <Text style={styles.clickableText}>Forgot Password?</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity
           style={styles.loginButton}
+          // Call login method
           onPress={() => console.log('pressed')}>
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.clickableTextButton}>
+        <TouchableOpacity style={styles.signUpButton}>
           <Text style={styles.clickableText}>
             Don't have an account? Sign Up!
           </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.clickableTextButton}>
-          <Text style={styles.clickableText}>Forgot Password</Text>
         </TouchableOpacity>
       </View>
     );
@@ -53,12 +56,6 @@ class LoginForm extends Component {
 }
 
 const styles = StyleSheet.create({
-  continer: {
-    padding: 20,
-    backgroundColor: Colors.CONTAINER_BACKGROUND_COLOR,
-    borderRadius: 20,
-  },
-
   input: {
     backgroundColor: Colors.TEXT_INPUT_BACKROUND_COLOR,
     color: 'white',
@@ -67,6 +64,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 30,
     marginBottom: 15,
+  },
+
+  passwordResetButton: {
+    padding: 5,
+    marginTop: -10,
+    marginBottom: 10,
+    marginLeft: 240,
+    marginRight: 30,
+    alignItems: 'flex-end',
   },
 
   loginButton: {
@@ -85,10 +91,10 @@ const styles = StyleSheet.create({
     color: Colors.BUTTON_TEXT_COLOR,
   },
 
-  clickableTextButton: {
-    padding: 7,
+  signUpButton: {
+    padding: 10,
     marginBottom: 10,
-    marginHorizontal: 50,
+    marginHorizontal: 70,
     alignItems: 'center',
   },
 

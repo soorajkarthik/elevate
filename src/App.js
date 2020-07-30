@@ -1,23 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import SignUpScreen from './screens/SignUpScreen';
 import LoginScreen from './screens/LoginScreen';
 
 const App = () => {
   return (
     <View>
-      <LoginScreen />
+      <SignUpScreen />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  footer: {
-    color: 'black',
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    padding: 100,
-  },
-});
 
 export default App;

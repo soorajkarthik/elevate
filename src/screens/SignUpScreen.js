@@ -9,31 +9,30 @@ import {
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import * as Colors from '../constants/Colors';
-import LoginForm from '../components/LoginForm';
+import SignUpForm from '../components/SignUpForm';
 
-class LoginScreen extends Component {
+class SignUpScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="dark-content" />
-        <Animatable.View
-          style={styles.headerContainer}
-          animation="bounceInDown"
-          duration={3000}>
-          <Image source={require('../assets/logo.png')} style={styles.logo} />
-          <Text style={styles.text}>Welcome back!</Text>
+        <Animatable.View style={styles.headerContainer} animation="fadeInDown">
+          <Image
+            style={styles.logo}
+            source={require('../assets/logoPlain.png')}
+          />
+          <Text style={styles.text}>Lets get started!</Text>
         </Animatable.View>
         <KeyboardAvoidingView
-          style={styles.formContainerWrapper}
-          behavior="padding"
-          keyboardVerticalOffset={-100}>
+          styles={styles.formContainerWrapper}
+          behavior="padding">
           <Animatable.View
             style={styles.formContainer}
             animation="bounceInUp"
             delay={200}
             duration={1500}
             easing="ease-in-cubic">
-            <LoginForm />
+            <SignUpForm />
           </Animatable.View>
         </KeyboardAvoidingView>
       </View>
@@ -47,17 +46,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 
+  logo: {
+    transform: [{scale: 0.7}],
+    maxWidth: 400,
+    maxHeight: 100,
+  },
+
   headerContainer: {
-    flex: 4,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 10,
-  },
-
-  logo: {
-    transform: [{scale: 0.8}],
-    maxWidth: 450,
-    maxHeight: 150,
   },
 
   text: {
@@ -68,16 +67,15 @@ const styles = StyleSheet.create({
   },
 
   formContainerWrapper: {
-    flex: 5,
+    flex: 2,
   },
 
   formContainer: {
-    flexGrow: 1,
-    paddingTop: 50,
+    paddingVertical: 50,
     backgroundColor: Colors.CONTAINER_BACKGROUND_COLOR,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
   },
 });
 
-export default LoginScreen;
+export default SignUpScreen;
