@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   StatusBar,
+  Platform,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import * as Colors from '../constants/Colors';
@@ -20,13 +21,19 @@ class LoginScreen extends Component {
           style={styles.headerContainer}
           animation="fadeInDown"
           duration={2000}>
-          <Image source={require('../assets/logoPlain.png')} style={styles.logo} />
+          <Image
+            source={require('../assets/logoPlain.png')}
+            style={styles.logo}
+          />
           <Text style={styles.text}>Welcome back!</Text>
         </Animatable.View>
         <KeyboardAvoidingView
           style={styles.formContainerWrapper}
           behavior="padding"
-          keyboardVerticalOffset={-100}>
+          keyboardVerticalOffset={Platform.select({
+            ios: () => 0,
+            android: () => -500,
+          })()}>
           <Animatable.View
             style={styles.formContainer}
             animation="bounceInUp"
@@ -72,7 +79,7 @@ const styles = StyleSheet.create({
   },
 
   formContainer: {
-    flexGrow: 1,
+    height: '100%',
     paddingTop: 50,
     backgroundColor: Colors.CONTAINER_BACKGROUND_COLOR,
     borderTopLeftRadius: 50,

@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     padding: 5,
     marginTop: -10,
     marginBottom: 10,
-    marginLeft: 240,
+    marginLeft: '50%',
     marginRight: 30,
     alignItems: 'flex-end',
   },
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   signUpButton: {
     padding: 10,
     marginBottom: 10,
-    marginHorizontal: 70,
+    marginHorizontal: '10%',
     alignItems: 'center',
   },
 

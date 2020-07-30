@@ -34,7 +34,10 @@ class PasswordResetScreen extends Component {
         <KeyboardAvoidingView
           style={styles.formContainerWrapper}
           behavior="padding"
-          keyboardVerticalOffset={-500}>
+          keyboardVerticalOffset={Platform.select({
+            ios: () => 0,
+            android: () => -500,
+          })()}>
           <Animatable.View
             style={styles.formContainer}
             animation="bounceInUp"
@@ -81,7 +84,8 @@ const styles = StyleSheet.create({
 
   formContainer: {
     backgroundColor: Colors.CONTAINER_BACKGROUND_COLOR,
-    paddingVertical: 50,
+    height: '100%',
+    paddingTop: 50,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
   },

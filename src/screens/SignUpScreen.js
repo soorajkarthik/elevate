@@ -28,7 +28,11 @@ class SignUpScreen extends Component {
         </Animatable.View>
         <KeyboardAvoidingView
           styles={styles.formContainerWrapper}
-          behavior="padding">
+          behavior="padding"
+          keyboardVerticalOffset={Platform.select({
+            ios: () => 0,
+            android: () => -500,
+          })()}>
           <Animatable.View
             style={styles.formContainer}
             animation="bounceInUp"
