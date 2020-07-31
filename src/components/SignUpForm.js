@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
 
   registerButton: {
-    backgroundColor: Colors.BUTTON_BACKGROUND_COLOR,
+    backgroundColor: Colors.ACCENT_COLOR,
     borderRadius: 10,
     paddingHorizontal: 20,
     marginHorizontal: 30,

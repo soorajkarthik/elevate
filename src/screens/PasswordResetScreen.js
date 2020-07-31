@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: Colors.CONTAINER_BACKGROUND_COLOR,
+    color: Colors.PRIMARY_COLOR,
     textAlign: 'justify',
     fontSize: 20,
     marginHorizontal: 50,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
 
   formContainer: {
-    backgroundColor: Colors.CONTAINER_BACKGROUND_COLOR,
+    backgroundColor: Colors.PRIMARY_COLOR,
     height: '100%',
     paddingTop: 50,
     borderTopLeftRadius: 50,

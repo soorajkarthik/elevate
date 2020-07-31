@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: Colors.CONTAINER_BACKGROUND_COLOR,
+    color: Colors.PRIMARY_COLOR,
     alignSelf: 'center',
     fontSize: 26,
     fontWeight: 'bold',
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   formContainer: {
     height: '100%',
     paddingTop: 50,
-    backgroundColor: Colors.CONTAINER_BACKGROUND_COLOR,
+    backgroundColor: Colors.PRIMARY_COLOR,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
   },
