@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import * as Screen from './screens/PasswordResetScreen'
+import {NavigationContainer} from '@react-navigation/native';
+import AuthNavigator from './navigators/AuthNavigator';
+
 const App = () => {
   return (
-    <View>
-      <Screen.default />
-    </View>
+    <NavigationContainer>
+      <AuthNavigator/>
+    </NavigationContainer>
   );
 };
 

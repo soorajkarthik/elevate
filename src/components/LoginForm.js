@@ -34,7 +34,9 @@ class LoginForm extends Component {
           ref={(input) => (this.passwordInput = input)}
         />
 
-        <TouchableOpacity style={styles.passwordResetButton}>
+        <TouchableOpacity
+          style={styles.passwordResetButton}
+          onPress={() => this.props.navigation.navigate('PasswordReset')}>
           <Text style={styles.clickableText}>Forgot Password?</Text>
         </TouchableOpacity>
 
@@ -45,7 +47,7 @@ class LoginForm extends Component {
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.signUpButton}>
+        <TouchableOpacity style={styles.signUpButton} onPress={() => this.props.navigation.navigate('SignUp')}>
           <Text style={styles.clickableText}>
             Don't have an account? Sign Up!
           </Text>
