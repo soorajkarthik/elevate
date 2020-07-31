@@ -47,7 +47,9 @@ class LoginForm extends Component {
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.signUpButton} onPress={() => this.props.navigation.navigate('SignUp')}>
+        <TouchableOpacity
+          style={styles.signUpButton}
+          onPress={() => this.props.navigation.navigate('SignUp')}>
           <Text style={styles.clickableText}>
             Don't have an account? Sign Up!
           </Text>

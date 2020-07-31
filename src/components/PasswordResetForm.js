@@ -35,31 +35,31 @@ class PasswordResetForm extends Component {
 }
 
 const styles = StyleSheet.create({
-    input: {
-        backgroundColor: Colors.TEXT_INPUT_BACKROUND_COLOR,
-        color: 'white',
-        fontSize: 20,
-        paddingHorizontal: 20,
-        borderRadius: 10,
-        marginHorizontal: 30,
-        marginBottom: 15,
-      },
+  input: {
+    backgroundColor: Colors.TEXT_INPUT_BACKROUND_COLOR,
+    color: 'white',
+    fontSize: 20,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginHorizontal: 30,
+    marginBottom: 15,
+  },
 
-      requestButton: {
-        backgroundColor: Colors.BUTTON_BACKGROUND_COLOR,
-        borderRadius: 10,
-        paddingHorizontal: 20,
-        marginHorizontal: 30,
-        marginBottom: 15,
-        alignItems: 'center',
-        paddingVertical: 7,
-      },
-    
-      requestText: {
-        fontSize: 20,
-        fontWeight: '300',
-        color: Colors.BUTTON_TEXT_COLOR,
-      },
+  requestButton: {
+    backgroundColor: Colors.BUTTON_BACKGROUND_COLOR,
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    marginHorizontal: 30,
+    marginBottom: 15,
+    alignItems: 'center',
+    paddingVertical: 7,
+  },
+
+  requestText: {
+    fontSize: 20,
+    fontWeight: '300',
+    color: Colors.BUTTON_TEXT_COLOR,
+  },
 });
 
 export default PasswordResetForm;

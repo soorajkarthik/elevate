@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {Text, TextInput, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  TextInput,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import * as Colors from '../constants/Colors';
 
 class SignUpForm extends Component {
@@ -110,7 +116,6 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     color: Colors.BUTTON_TEXT_COLOR,
   },
-
 });
 
 export default SignUpForm;

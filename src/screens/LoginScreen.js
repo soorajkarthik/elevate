@@ -40,7 +40,7 @@ class LoginScreen extends Component {
             delay={200}
             duration={3000}
             easing="ease">
-            <LoginForm navigation={this.props.navigation}/>
+            <LoginForm navigation={this.props.navigation} />
           </Animatable.View>
         </KeyboardAvoidingView>
       </View>
