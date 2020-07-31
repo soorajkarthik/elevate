@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {
-  Text,
   StyleSheet,
-  View,
+  Text,
   TextInput,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import * as Colors from '../constants/Colors';
 

@@ -11,12 +11,13 @@ import {
 import * as Animatable from 'react-native-animatable';
 import * as Colors from '../constants/Colors';
 import LoginForm from '../components/LoginForm';
+import MyStatusBar from '../components/MyStatusBar';
 
 class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
+        <MyStatusBar />
         <Animatable.View
           style={styles.headerContainer}
           animation="fadeInDown"

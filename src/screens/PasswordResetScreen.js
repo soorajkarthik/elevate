@@ -1,23 +1,21 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
-  View,
-  TextInput,
-  TouchableOpacity,
   Image,
-  Text,
-  StatusBar,
   KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
-import PasswordResetForm from '../components/PasswordResetForm';
 import * as Animatable from 'react-native-animatable';
+import MyStatusBar from '../components/MyStatusBar';
+import PasswordResetForm from '../components/PasswordResetForm';
 import * as Colors from '../constants/Colors';
 
 class PasswordResetScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
+        <MyStatusBar />
         <Animatable.View
           style={styles.headerContainer}
           animation="fadeInDown"

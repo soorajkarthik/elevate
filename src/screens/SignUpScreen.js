@@ -1,21 +1,21 @@
 import React, {Component} from 'react';
 import {
-  Text,
-  KeyboardAvoidingView,
-  View,
   Image,
+  KeyboardAvoidingView,
   StyleSheet,
-  StatusBar,
+  Text,
+  View,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import * as Colors from '../constants/Colors';
+import MyStatusBar from '../components/MyStatusBar';
 import SignUpForm from '../components/SignUpForm';
+import * as Colors from '../constants/Colors';
 
 class SignUpScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
+        <MyStatusBar />
         <Animatable.View
           style={styles.headerContainer}
           animation="fadeInDown"
