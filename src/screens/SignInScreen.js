@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
 import {
-  Text,
-  KeyboardAvoidingView,
-  View,
   Image,
-  StyleSheet,
-  StatusBar,
+  KeyboardAvoidingView,
   Platform,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import * as Colors from '../constants/Colors';
-import LoginForm from '../components/LoginForm';
 import MyStatusBar from '../components/MyStatusBar';
+import SignInForm from '../components/SignInForm';
+import * as Colors from '../constants/Colors';
 
-class LoginScreen extends Component {
+class SignInScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -41,7 +40,7 @@ class LoginScreen extends Component {
             delay={200}
             duration={3000}
             easing="ease">
-            <LoginForm navigation={this.props.navigation} />
+            <SignInForm navigation={this.props.navigation} />
           </Animatable.View>
         </KeyboardAvoidingView>
       </View>
@@ -88,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default SignInScreen;

@@ -1,8 +1,8 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {BACK_BUTTON_COLOR} from '../constants/Colors';
-import LoginScreen from '../screens/LoginScreen';
 import PasswordResetScreen from '../screens/PasswordResetScreen';
+import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 
 const Stack = createStackNavigator();
@@ -12,7 +12,7 @@ const AuthNavigator = () => {
     <Stack.Navigator headerMode="screen">
       <Stack.Screen
         name="Login"
-        component={LoginScreen}
+        component={SignInScreen}
         options={headerOptions.mainScreen}
       />
       <Stack.Screen

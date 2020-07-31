@@ -7,8 +7,24 @@ import {
   View,
 } from 'react-native';
 import * as Colors from '../constants/Colors';
+import {AuthContext} from '../context/Contexts';
 
-class LoginForm extends Component {
+class SignInForm extends Component {
+  static contextType = AuthContext;
+
+  constructor(props) {
+    super(props);
+    this.state = {username: '', password: ''};
+  }
+
+  signIn() {
+    const data = {
+      username: this.state.username,
+      password: this.state.password,
+    };
+    this.context.signIn(data);
+  }
+
   render() {
     return (
       <View>
@@ -20,8 +36,9 @@ class LoginForm extends Component {
           autoCapitalize="none"
           autoCorrect={false}
           returnKeyType="next"
+          text={this.state.username}
+          onChangeText={(edited) => this.setState({username: edited})}
           onSubmitEditing={() => this.passwordInput.focus()}
-          ref={(input) => (this.emailInput = input)}
         />
 
         <TextInput
@@ -30,7 +47,9 @@ class LoginForm extends Component {
           placeholder="Password"
           placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
           returnKeyType="go"
-          onSubmitEditing={() => console.log('pressed')} // Call login method
+          text={this.state.password}
+          onChangeText={(edited) => this.setState({password: edited})}
+          onSubmitEditing={() => this.signIn()} // Call login method
           ref={(input) => (this.passwordInput = input)}
         />
 
@@ -42,8 +61,7 @@ class LoginForm extends Component {
 
         <TouchableOpacity
           style={styles.loginButton}
-          // Call login method
-          onPress={() => console.log('pressed')}>
+          onPress={() => this.signIn()}>
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
 
@@ -109,4 +127,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginForm;
+export default SignInForm;
