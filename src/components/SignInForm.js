@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,14 +7,14 @@ import {
   View,
 } from 'react-native';
 import * as Colors from '../constants/Colors';
-import {AuthContext} from '../context/Contexts';
+import { AuthContext } from '../context/Contexts';
 
 class SignInForm extends Component {
   static contextType = AuthContext;
 
   constructor(props) {
     super(props);
-    this.state = {username: '', password: ''};
+    this.state = { username: '', password: '' };
   }
 
   signIn() {
@@ -37,7 +37,7 @@ class SignInForm extends Component {
           autoCorrect={false}
           returnKeyType="next"
           text={this.state.username}
-          onChangeText={(edited) => this.setState({username: edited})}
+          onChangeText={(edited) => this.setState({ username: edited })}
           onSubmitEditing={() => this.passwordInput.focus()}
         />
 
@@ -48,7 +48,7 @@ class SignInForm extends Component {
           placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
           returnKeyType="go"
           text={this.state.password}
-          onChangeText={(edited) => this.setState({password: edited})}
+          onChangeText={(edited) => this.setState({ password: edited })}
           onSubmitEditing={() => this.signIn()} // Call login method
           ref={(input) => (this.passwordInput = input)}
         />

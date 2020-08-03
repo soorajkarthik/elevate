@@ -1,6 +1,6 @@
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import {BACK_BUTTON_COLOR} from '../constants/Colors';
+import { BACK_BUTTON_COLOR } from '../constants/Colors';
 import PasswordResetScreen from '../screens/PasswordResetScreen';
 import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';

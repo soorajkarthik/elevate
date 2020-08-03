@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {StatusBar} from 'react-native';
+import React, { Component } from 'react';
+import { StatusBar } from 'react-native';
 
 class MyStatusBar extends Component {
   render() {
