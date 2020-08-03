@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -39,7 +39,7 @@ class SignUpScreen extends Component {
             delay={200}
             duration={3000}
             easing="ease">
-            <SignUpForm />
+            <SignUpForm navigation={this.props.navigation} />
           </Animatable.View>
         </KeyboardAvoidingView>
       </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    transform: [{scale: 0.7}],
+    transform: [{ scale: 0.7 }],
     maxWidth: 400,
     maxHeight: 100,
   },

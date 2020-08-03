@@ -11,6 +11,7 @@ import AuthNavigator from './navigators/AuthNavigator';
 import MainAppNavigator from './navigators/MainAppNavigator';
 
 const App = () => {
+  // Manage state
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -50,6 +51,8 @@ const App = () => {
     },
   );
 
+  // Try and get user auth token from AsyncStorage
+  // If its stored, skip to main screen
   React.useEffect(() => {
     const fetchToken = async () => {
       let userToken;
@@ -66,22 +69,15 @@ const App = () => {
     dispatch({ type: 'FINISH_LOADING' });
   }, []);
 
+  // Context methods for auth
   const authContext = React.useMemo(
     () => ({
+      // Sign in the user
       signIn: async (data) => {
         dispatch({ type: 'START_LOADING' });
-        await Axios.post(
-          `${BASE_URL}/users/login`,
-          {},
-          {
-            auth: {
-              username: data.username,
-              password: data.password,
-            },
-          },
-        )
+        await Axios.post(`${BASE_URL}/users/login`, {}, { auth: data })
+          // Login successful
           .then((result) => {
-            console.log(result.data);
             Toast.showWithGravity(
               result.data.message,
               Toast.LONG,
@@ -90,6 +86,7 @@ const App = () => {
             AsyncStorage.setItem('authToken', result.data.token);
             dispatch({ type: 'SIGN_IN', token: result.data.token });
           })
+          // Login not successful
           .catch((error) =>
             Toast.showWithGravity(
               error.response.data.message,
@@ -99,14 +96,35 @@ const App = () => {
           );
         dispatch({ type: 'FINISH_LOADING' });
       },
+
+      // Sign out the user
       signOut: async () => {
         dispatch({ type: 'START_LOADING' });
         await AsyncStorage.clear();
         dispatch({ type: 'SIGN_OUT' });
         dispatch({ type: 'FINISH_LOADING' });
       },
-      signUp: async (data) => {
+
+      // Sign up the user
+      signUp: (data) => {
         dispatch({ type: 'START_LOADING' });
+        return Axios.post(`${BASE_URL}/users`, data)
+          .then(() => {
+            alert(
+              'Your account has been created successfully! Please verify your email using the link we sent you.',
+            );
+            dispatch({ type: 'FINISH_LOADING' });
+            return true;
+          })
+          .catch((error) => {
+            Toast.showWithGravity(
+              error.response.data.message,
+              Toast.LONG,
+              Toast.CENTER,
+            );
+            dispatch({ type: 'FINISH_LOADING' });
+            return false;
+          });
       },
     }),
     [],
