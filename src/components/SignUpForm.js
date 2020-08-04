@@ -90,7 +90,7 @@ class SignUpForm extends Component {
       this.setState({
         hasError: true,
         errorMessage:
-          'Please enter a valid password. At least 8 characters long. Must include at least one number and one special character.',
+          'Please enter a valid password. It must be least 8 characters long and must include at least one number and one special character.',
       });
       return false;
     } else if (this.state.password !== this.state.confirmPassword) {
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
   errorMessage: {
     color: Colors.ERROR_MESSAGE_COLOR,
     fontWeight: '200',
-    fontSize: 20,
+    fontSize: 17,
     marginBottom: 20,
     marginHorizontal: 30,
     alignSelf: 'center',
