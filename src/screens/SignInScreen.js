@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MyStatusBar from '../components/MyStatusBar';
@@ -15,7 +16,7 @@ import * as Colors from '../constants/Colors';
 class SignInScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <MyStatusBar />
         <Animatable.View
           style={styles.headerContainer}
@@ -28,7 +29,6 @@ class SignInScreen extends Component {
           <Text style={styles.text}>Welcome back!</Text>
         </Animatable.View>
         <KeyboardAvoidingView
-          style={styles.formContainerWrapper}
           behavior="padding"
           keyboardVerticalOffset={Platform.select({
             ios: () => 0,
@@ -43,26 +43,24 @@ class SignInScreen extends Component {
             <SignInForm navigation={this.props.navigation} />
           </Animatable.View>
         </KeyboardAvoidingView>
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    backgroundColor: 'white',
+    backgroundColor: Colors.BACKGROUND_COLOR,
   },
 
   headerContainer: {
-    flex: 4,
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 10,
   },
 
   logo: {
-    transform: [{scale: 0.7}],
+    transform: [{ scale: 0.7 }],
     maxWidth: 400,
     maxHeight: 100,
   },
@@ -74,12 +72,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-  formContainerWrapper: {
-    flex: 5,
-  },
-
   formContainer: {
-    height: '100%',
     paddingTop: 50,
     backgroundColor: Colors.PRIMARY_COLOR,
     borderTopLeftRadius: 50,

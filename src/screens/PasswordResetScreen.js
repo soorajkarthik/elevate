@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -52,11 +52,11 @@ class PasswordResetScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    backgroundColor: 'white',
+    backgroundColor: Colors.BACKGROUND_COLOR,
   },
 
   logo: {
-    transform: [{scale: 0.7}],
+    transform: [{ scale: 0.7 }],
     maxWidth: 400,
     maxHeight: 100,
   },

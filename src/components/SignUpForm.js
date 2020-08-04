@@ -10,6 +10,7 @@ import { TextInputMask } from 'react-native-masked-text';
 import * as Colors from '../constants/Colors';
 import { AuthContext } from '../context/Contexts';
 import Toast from 'react-native-simple-toast';
+import { color } from 'react-native-reanimated';
 
 class SignUpForm extends Component {
   static contextType = AuthContext;
@@ -23,6 +24,8 @@ class SignUpForm extends Component {
       phone: '',
       password: '',
       confirmPassword: '',
+      hasError: false,
+      errorMessage: '',
     };
   }
 
@@ -37,66 +40,64 @@ class SignUpForm extends Component {
 
     if (this.state.phone != '') data.phone = this.state.phone;
 
-    if (await this.context.signUp(data)) this.props.navigation.navigate('Login');
+    if (await this.context.signUp(data))
+      this.props.navigation.navigate('Login');
     else this.emailInput.focus();
   }
 
   validateFields() {
     if (this.state.firstName === '') {
       this.firstNameInput.focus();
-      Toast.showWithGravity(
-        'Please enter your first name',
-        Toast.LONG,
-        Toast.CENTER,
-      );
+      this.setState({
+        hasError: true,
+        errorMessage: 'Please enter your first name',
+      });
       return false;
     }
 
     if (this.state.lastName === '') {
       this.lastNameInput.focus();
-      Toast.showWithGravity(
-        'Please enter your last name',
-        Toast.LONG,
-        Toast.CENTER,
-      );
-      return false;
-    }
-
-    if (this.state.password === '') {
-      this.passwordInput.focus();
-      Toast.showWithGravity(
-        'Please enter a password',
-        Toast.LONG,
-        Toast.CENTER,
-      );
-      return false;
-    }
-
-    if (this.state.password !== this.state.confirmPassword) {
-      this.confirmPasswordInput.clear();
-      this.confirmPasswordInput.focus();
-      Toast.showWithGravity(
-        'Password does not match confirmation',
-        Toast.LONG,
-        Toast.CENTER,
-      );
+      this.setState({
+        hasError: true,
+        errorMessage: 'Please enter your last name',
+      });
       return false;
     }
 
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!emailRegex.test(String(this.state.email).toLowerCase())) {
       this.emailInput.focus();
-      Toast.showWithGravity(
-        'Please enter a valid email address',
-        Toast.LONG,
-        Toast.CENTER,
-      );
+      this.setState({
+        hasError: true,
+        errorMessage: 'Please a valid email address',
+      });
       return false;
     }
 
     if (this.state.phone !== '' && !this.phoneInput.isValid) {
+      this.setState({
+        hasError: true,
+        errorMessage:
+          'Please enter a valid phone number or leave the field blank',
+      });
+      return false;
+    }
+
+    let passwordRegex = /(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+    if (!passwordRegex.test(this.state.password)) {
+      this.passwordInput.clear();
+      this.passwordInput.focus();
+      this.setState({
+        hasError: true,
+        errorMessage:
+          'Please enter a valid password. At least 8 characters long. Must include at least one number and one special character.',
+      });
+      return false;
+    } else if (this.state.password !== this.state.confirmPassword) {
+      this.confirmPasswordInput.clear();
+      this.confirmPasswordInput.focus();
       Toast.showWithGravity(
-        'Please enter a valid phone number or leave the field blank',
+        'Password does not match confirmation',
         Toast.LONG,
         Toast.CENTER,
       );
@@ -109,6 +110,10 @@ class SignUpForm extends Component {
   render() {
     return (
       <View>
+        {this.state.hasError && (
+          <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
+        )}
+
         <View style={styles.nameInputContainer}>
           <TextInput
             style={styles.nameInput}
@@ -198,6 +203,16 @@ class SignUpForm extends Component {
 }
 
 const styles = StyleSheet.create({
+  errorMessage: {
+    color: Colors.ERROR_MESSAGE_COLOR,
+    fontWeight: '200',
+    fontSize: 18,
+    marginBottom: 20,
+    marginHorizontal: 30,
+    alignSelf: 'center',
+    textAlign: 'center',
+  },
+
   nameInputContainer: {
     flexDirection: 'row',
     marginHorizontal: 20,
@@ -206,17 +221,17 @@ const styles = StyleSheet.create({
 
   nameInput: {
     backgroundColor: Colors.TEXT_INPUT_BACKROUND_COLOR,
-    color: 'white',
+    color: Colors.TEXT_INPUT_TEXT_COLOR,
     flex: 1,
     fontSize: 20,
     paddingHorizontal: 20,
     borderRadius: 10,
-    marginHorizontal: 5,
+    marginHorizontal: 10,
   },
 
   input: {
     backgroundColor: Colors.TEXT_INPUT_BACKROUND_COLOR,
-    color: 'white',
+    color: Colors.TEXT_INPUT_TEXT_COLOR,
     fontSize: 20,
     paddingHorizontal: 20,
     borderRadius: 10,

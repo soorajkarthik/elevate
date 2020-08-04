@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MyStatusBar from '../components/MyStatusBar';
@@ -14,7 +15,7 @@ import * as Colors from '../constants/Colors';
 class SignUpScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <MyStatusBar />
         <Animatable.View
           style={styles.headerContainer}
@@ -27,11 +28,10 @@ class SignUpScreen extends Component {
           <Text style={styles.text}>Lets get started!</Text>
         </Animatable.View>
         <KeyboardAvoidingView
-          styles={styles.formContainerWrapper}
           behavior="padding"
           keyboardVerticalOffset={Platform.select({
             ios: () => 0,
-            android: () => -500,
+            android: () => -300,
           })()}>
           <Animatable.View
             style={styles.formContainer}
@@ -42,15 +42,14 @@ class SignUpScreen extends Component {
             <SignUpForm navigation={this.props.navigation} />
           </Animatable.View>
         </KeyboardAvoidingView>
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    backgroundColor: 'white',
+    backgroundColor: Colors.BACKGROUND_COLOR,
   },
 
   logo: {
@@ -60,7 +59,6 @@ const styles = StyleSheet.create({
   },
 
   headerContainer: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 10,
@@ -73,13 +71,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-  formContainerWrapper: {
-    flex: 2,
-  },
-
   formContainer: {
-    flexGrow: 1,
-    paddingVertical: 50,
+    paddingTop: 50,
+    paddingBottom: 30,
     backgroundColor: Colors.PRIMARY_COLOR,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,

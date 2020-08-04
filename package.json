@@ -27,6 +27,7 @@
     "react-native-safe-area-context": "^3.1.1",
     "react-native-screens": "^2.9.0",
     "react-native-simple-toast": "^1.1.2",
+    "react-native-styled-toast": "^1.0.19",
     "react-native-tab-view": "^2.15.0"
   },
   "devDependencies": {

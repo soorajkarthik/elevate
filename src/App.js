@@ -5,7 +5,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Toast from 'react-native-simple-toast';
-import { BASE_URL } from './constants/Constants';
+import { BASE_URL } from './constants/Values';
 import { AuthContext } from './context/Contexts';
 import AuthNavigator from './navigators/AuthNavigator';
 import MainAppNavigator from './navigators/MainAppNavigator';
