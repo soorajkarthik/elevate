@@ -7,8 +7,24 @@ import {
   View,
 } from 'react-native';
 import * as Colors from '../constants/Colors';
+import { AppContext } from '../context/Contexts';
 
 class PasswordResetForm extends Component {
+  static contextType = AppContext;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+    };
+  }
+
+  async requestReset() {
+    if (await this.context.passwordReset(String(this.state.email)))
+      this.props.navigation.navigate('Login');
+    else this.emailInput.focus();
+  }
+
   render() {
     return (
       <View>
@@ -17,16 +33,18 @@ class PasswordResetForm extends Component {
           keyboardType="email-address"
           placeholder="Email"
           placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
+          value={this.state.email}
+          onChangeText={(edited) => this.setState({ email: edited })}
           autoCapitalize="none"
           autoCorrect={false}
           returnKeyType="go"
-          onSubmitEditing={() => console.log('pressed')}
-          ref={(input) => (this.passwordInput = input)}
+          onSubmitEditing={() => this.requestReset()}
+          ref={(input) => (this.emailInput = input)}
         />
 
         <TouchableOpacity
           style={styles.requestButton}
-          onPress={() => console.log('pressed')}>
+          onPress={() => this.requestReset()}>
           <Text style={styles.requestText}>Send reset link</Text>
         </TouchableOpacity>
       </View>

@@ -11,11 +11,12 @@ import * as Animatable from 'react-native-animatable';
 import MyStatusBar from '../components/MyStatusBar';
 import SignUpForm from '../components/SignUpForm';
 import * as Colors from '../constants/Colors';
+import * as Constants from '../constants/Values';
 
 class SignUpScreen extends Component {
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} endFillColor={Colors.ACCENT_COLOR}>
         <MyStatusBar />
         <Animatable.View
           style={styles.headerContainer}
@@ -30,8 +31,8 @@ class SignUpScreen extends Component {
         <KeyboardAvoidingView
           behavior="padding"
           keyboardVerticalOffset={Platform.select({
-            ios: () => 0,
-            android: () => -300,
+            ios: () => Constants.IOS_KEYBOARD_PADDING,
+            android: () => Constants.ANDROID_KEYBOARD_PADDING,
           })()}>
           <Animatable.View
             style={styles.formContainer}

@@ -3,15 +3,15 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MyStatusBar from '../components/MyStatusBar';
 import SignInForm from '../components/SignInForm';
 import * as Colors from '../constants/Colors';
+import * as Constants from '../constants/Values';
 
 class SignInScreen extends Component {
   render() {
@@ -31,8 +31,8 @@ class SignInScreen extends Component {
         <KeyboardAvoidingView
           behavior="padding"
           keyboardVerticalOffset={Platform.select({
-            ios: () => 0,
-            android: () => -500,
+            ios: () => Constants.IOS_KEYBOARD_PADDING,
+            android: () => Constants.ANDROID_KEYBOARD_PADDING,
           })()}>
           <Animatable.View
             style={styles.formContainer}
@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
 
   formContainer: {
     paddingTop: 50,
+    paddingBottom: 30,
     backgroundColor: Colors.PRIMARY_COLOR,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,

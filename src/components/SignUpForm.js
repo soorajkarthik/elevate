@@ -7,13 +7,12 @@ import {
   View,
 } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
-import * as Colors from '../constants/Colors';
-import { AuthContext } from '../context/Contexts';
 import Toast from 'react-native-simple-toast';
-import { color } from 'react-native-reanimated';
+import * as Colors from '../constants/Colors';
+import { AppContext } from '../context/Contexts';
 
 class SignUpForm extends Component {
-  static contextType = AuthContext;
+  static contextType = AppContext;
 
   constructor(props) {
     super(props);
@@ -86,6 +85,7 @@ class SignUpForm extends Component {
     let passwordRegex = /(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
     if (!passwordRegex.test(this.state.password)) {
       this.passwordInput.clear();
+      this.confirmPasswordInput.clear();
       this.passwordInput.focus();
       this.setState({
         hasError: true,
@@ -96,11 +96,10 @@ class SignUpForm extends Component {
     } else if (this.state.password !== this.state.confirmPassword) {
       this.confirmPasswordInput.clear();
       this.confirmPasswordInput.focus();
-      Toast.showWithGravity(
-        'Password does not match confirmation',
-        Toast.LONG,
-        Toast.CENTER,
-      );
+      this.setState({
+        hasError: true,
+        errorMessage: 'Password does not match confirmation',
+      });
       return false;
     }
 
@@ -206,7 +205,7 @@ const styles = StyleSheet.create({
   errorMessage: {
     color: Colors.ERROR_MESSAGE_COLOR,
     fontWeight: '200',
-    fontSize: 18,
+    fontSize: 20,
     marginBottom: 20,
     marginHorizontal: 30,
     alignSelf: 'center',

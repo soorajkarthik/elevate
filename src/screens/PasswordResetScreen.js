@@ -6,6 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import * as Constants from '../constants/Values';
 import * as Animatable from 'react-native-animatable';
 import MyStatusBar from '../components/MyStatusBar';
 import PasswordResetForm from '../components/PasswordResetForm';
@@ -33,15 +34,15 @@ class PasswordResetScreen extends Component {
           style={styles.formContainerWrapper}
           behavior="padding"
           keyboardVerticalOffset={Platform.select({
-            ios: () => 0,
-            android: () => -500,
+            ios: () => Constants.IOS_KEYBOARD_PADDING,
+            android: () => Constants.ANDROID_KEYBOARD_PADDING,
           })()}>
           <Animatable.View
             style={styles.formContainer}
             animation="bounceInUp"
             delay={200}
             duration={3000}>
-            <PasswordResetForm />
+            <PasswordResetForm navigation={this.props.navigation} />
           </Animatable.View>
         </KeyboardAvoidingView>
       </View>

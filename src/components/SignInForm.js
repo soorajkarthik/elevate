@@ -7,10 +7,10 @@ import {
   View,
 } from 'react-native';
 import * as Colors from '../constants/Colors';
-import { AuthContext } from '../context/Contexts';
+import { AppContext } from '../context/Contexts';
 
 class SignInForm extends Component {
-  static contextType = AuthContext;
+  static contextType = AppContext;
 
   constructor(props) {
     super(props);

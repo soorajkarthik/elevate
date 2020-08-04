@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Toast from 'react-native-simple-toast';
 import { BASE_URL } from './constants/Values';
-import { AuthContext } from './context/Contexts';
+import { AppContext } from './context/Contexts';
 import AuthNavigator from './navigators/AuthNavigator';
 import MainAppNavigator from './navigators/MainAppNavigator';
 
@@ -70,7 +70,7 @@ const App = () => {
   }, []);
 
   // Context methods for auth
-  const authContext = React.useMemo(
+  const appContext = React.useMemo(
     () => ({
       // Sign in the user
       signIn: async (data) => {
@@ -91,7 +91,7 @@ const App = () => {
             Toast.showWithGravity(
               error.response.data.message,
               Toast.LONG,
-              Toast.BOTTOM,
+              Toast.CENTER,
             ),
           );
         dispatch({ type: 'FINISH_LOADING' });
@@ -106,9 +106,9 @@ const App = () => {
       },
 
       // Sign up the user
-      signUp: (data) => {
+      signUp: async (data) => {
         dispatch({ type: 'START_LOADING' });
-        return Axios.post(`${BASE_URL}/users`, data)
+        return await Axios.post(`${BASE_URL}/users`, data)
           .then(() => {
             alert(
               'Your account has been created successfully! Please verify your email using the link we sent you.',
@@ -126,12 +126,36 @@ const App = () => {
             return false;
           });
       },
+
+      // Send password reset email
+      passwordReset: async (email) => {
+        dispatch({ type: 'START_LOADING' });
+        await Axios.get(`${BASE_URL}/users/pwordReset?email=${email}`)
+          .then((result) => {
+            Toast.showWithGravity(
+              result.data.message,
+              Toast.LONG,
+              Toast.CENTER,
+            );
+            AsyncStorage.setItem('authToken', result.data.token);
+            dispatch({ type: 'SIGN_IN', token: result.data.token });
+          })
+          // Login not successful
+          .catch((error) =>
+            Toast.showWithGravity(
+              error.response.data.message,
+              Toast.LONG,
+              Toast.CENTER,
+            ),
+          );
+        dispatch({ type: 'FINISH_LOADING' });
+      },
     }),
     [],
   );
 
   return (
-    <AuthContext.Provider value={authContext}>
+    <AppContext.Provider value={appContext}>
       <NavigationContainer>
         <Spinner
           visible={state.isLoading}
@@ -141,7 +165,7 @@ const App = () => {
         />
         {state.userToken == null ? <AuthNavigator /> : <MainAppNavigator />}
       </NavigationContainer>
-    </AuthContext.Provider>
+    </AppContext.Provider>
   );
 };
 
