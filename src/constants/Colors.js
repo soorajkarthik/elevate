@@ -1,6 +1,6 @@
 export const PRIMARY_COLOR = '#42a5ff';
 export const ACCENT_COLOR = '#0045cf';
-export const BACKGROUND_COLOR = 'white';
+export const BACKGROUND_COLOR = '#f0faff';
 export const BUTTON_TEXT_COLOR = 'rgba(255,255,255,0.85)';
 export const BACK_BUTTON_COLOR = 'rgba(0,69,207,0.7)';
 export const TEXT_INPUT_BACKROUND_COLOR = 'rgba(255,255,255,0.2)';
