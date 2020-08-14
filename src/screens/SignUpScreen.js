@@ -22,10 +22,7 @@ class SignUpScreen extends Component {
           style={styles.headerContainer}
           animation="fadeInDown"
           duration={2000}>
-          <Image
-            style={styles.logo}
-            source={require('../assets/logoPlain.png')}
-          />
+          <Image style={styles.logo} source={require('../assets/banner.png')} />
           <Text style={styles.text}>Lets get started!</Text>
         </Animatable.View>
         <KeyboardAvoidingView

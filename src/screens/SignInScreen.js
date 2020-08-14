@@ -22,10 +22,7 @@ class SignInScreen extends Component {
           style={styles.headerContainer}
           animation="fadeInDown"
           duration={2000}>
-          <Image
-            source={require('../assets/logoPlain.png')}
-            style={styles.logo}
-          />
+          <Image source={require('../assets/banner.png')} style={styles.logo} />
           <Text style={styles.text}>Welcome back!</Text>
         </Animatable.View>
         <KeyboardAvoidingView

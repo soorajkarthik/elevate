@@ -21,10 +21,7 @@ class PasswordResetScreen extends Component {
           style={styles.headerContainer}
           animation="fadeInDown"
           duration={2000}>
-          <Image
-            style={styles.logo}
-            source={require('../assets/logoPlain.png')}
-          />
+          <Image style={styles.logo} source={require('../assets/banner.png')} />
           <Text style={styles.text}>
             Lets get you a new password! Just enter your email and we'll send
             you a link to reset your password.
