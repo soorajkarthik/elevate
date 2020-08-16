@@ -8,7 +8,9 @@ const Tabs = createMaterialTopTabNavigator();
 
 const HomeScreenNavigator = () => {
   return (
-    <Tabs.Navigator tabBarOptions={{ style: styles.navigator }}>
+    <Tabs.Navigator
+      tabBarOptions={{ style: styles.navigator }}
+      backBehavior="none">
       <Tabs.Screen name="Temp" component={TempScreen} />
       <Tabs.Screen name="Temp1" component={TempScreen} />
       <Tabs.Screen name="Temp2" component={TempScreen} />
