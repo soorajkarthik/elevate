@@ -20,9 +20,10 @@ class PasswordResetForm extends Component {
   }
 
   async requestReset() {
-    if (await this.context.passwordReset(String(this.state.email)))
+    if (await this.context.passwordReset(String(this.state.email))) {
+      this.setState({ email: '' });
       this.props.navigation.navigate('Login');
-    else this.emailInput.focus();
+    } else this.emailInput.focus();
   }
 
   render() {

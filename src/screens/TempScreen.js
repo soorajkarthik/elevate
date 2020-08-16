@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import MyStatusBar from '../components/MyStatusBar';
 
-export default class TempHomeScreen extends Component {
+export default class TempScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
         <MyStatusBar />
-        <Text style={styles.text}> This is a temp home screen </Text>
+        <Text style={styles.text}> This is a temp screen </Text>
       </View>
     );
   }

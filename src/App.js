@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import Axios from 'axios';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Toast from 'react-native-simple-toast';
 import { BASE_URL } from './constants/Values';
@@ -55,14 +55,14 @@ const App = () => {
   // If its stored, skip to main screen
   React.useEffect(() => {
     const fetchToken = async () => {
-      let userToken;
+      let userToken = null;
 
       try {
         userToken = await AsyncStorage.getItem('authToken', () => {});
       } catch (e) {
         console.log(e);
       }
-      dispatch({ type: 'RESTORE_TOKEN', token: null });
+      dispatch({ type: 'RESTORE_TOKEN', token: userToken });
     };
 
     fetchToken();
@@ -108,12 +108,12 @@ const App = () => {
       // Sign up the user
       signUp: async (data) => {
         dispatch({ type: 'START_LOADING' });
-        return await Axios.post(`${BASE_URL}/users`, data)
+        let result = await Axios.post(`${BASE_URL}/users`, data)
           .then(() => {
-            alert(
+            Alert.alert(
+              'Account Created',
               'Your account has been created successfully! Please verify your email using the link we sent you.',
             );
-            dispatch({ type: 'FINISH_LOADING' });
             return true;
           })
           .catch((error) => {
@@ -122,33 +122,36 @@ const App = () => {
               Toast.LONG,
               Toast.CENTER,
             );
-            dispatch({ type: 'FINISH_LOADING' });
             return false;
           });
+        dispatch({ type: 'FINISH_LOADING' });
+        return result;
       },
 
       // Send password reset email
       passwordReset: async (email) => {
         dispatch({ type: 'START_LOADING' });
-        await Axios.get(`${BASE_URL}/users/pwordReset?email=${email}`)
+        let result = await Axios.get(
+          `${BASE_URL}/users/pwordReset?email=${email}`,
+        )
           .then((result) => {
             Toast.showWithGravity(
               result.data.message,
               Toast.LONG,
               Toast.CENTER,
             );
-            AsyncStorage.setItem('authToken', result.data.token);
-            dispatch({ type: 'SIGN_IN', token: result.data.token });
+            return true;
           })
-          // Login not successful
-          .catch((error) =>
+          .catch((error) => {
             Toast.showWithGravity(
               error.response.data.message,
               Toast.LONG,
               Toast.CENTER,
-            ),
-          );
+            );
+            return false;
+          });
         dispatch({ type: 'FINISH_LOADING' });
+        return result;
       },
     }),
     [],
