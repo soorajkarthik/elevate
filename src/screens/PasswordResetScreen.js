@@ -6,11 +6,11 @@ import {
   Text,
   View,
 } from 'react-native';
-import * as Constants from '../constants/Values';
 import * as Animatable from 'react-native-animatable';
 import MyStatusBar from '../components/MyStatusBar';
 import PasswordResetForm from '../components/PasswordResetForm';
 import * as Colors from '../constants/Colors';
+import * as Constants from '../constants/Values';
 
 class PasswordResetScreen extends Component {
   render() {

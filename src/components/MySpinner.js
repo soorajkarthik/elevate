@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Spinner from 'react-native-loading-spinner-overlay';
 import { StyleSheet } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 class MySpinner extends Component {
   render() {

@@ -1,13 +1,11 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay';
+import MySpinner from './components/MySpinner';
 import { AppContext, useAppMethods } from './context/Context';
 import AuthNavigator from './navigators/AuthNavigator';
 import MainAppNavigator from './navigators/MainAppNavigator';
 import { useStateManager } from './state/State';
-import MySpinner from './components/MySpinner';
 
 const App = () => {
   // Manage state

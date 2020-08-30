@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import {
   Image,
   KeyboardAvoidingView,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MyStatusBar from '../components/MyStatusBar';
