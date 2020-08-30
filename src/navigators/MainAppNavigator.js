@@ -7,7 +7,7 @@ import {
 import React, { Component } from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import { BACKGROUND_COLOR } from '../constants/Colors';
-import { AppContext } from '../context/Contexts';
+import { AppContext } from '../context/Context';
 import TempScreen from '../screens/TempScreen';
 import HomeScreenNavigator from './HomeScreenNavigator';
 

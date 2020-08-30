@@ -9,7 +9,7 @@ import {
 import { TextInputMask } from 'react-native-masked-text';
 import Toast from 'react-native-simple-toast';
 import * as Colors from '../constants/Colors';
-import { AppContext } from '../context/Contexts';
+import { AppContext } from '../context/Context';
 
 class SignUpForm extends Component {
   static contextType = AppContext;

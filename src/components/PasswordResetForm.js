@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import * as Colors from '../constants/Colors';
-import { AppContext } from '../context/Contexts';
+import { AppContext } from '../context/Context';
 
 class PasswordResetForm extends Component {
   static contextType = AppContext;
