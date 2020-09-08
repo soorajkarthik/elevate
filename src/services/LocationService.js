@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Alert } from 'react-native';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import { BASE_URL } from '../constants/Values';
+import { BASE_URL, DEBUG } from '../constants/Values';
 
-export default useBackgroundGeolocation = (debug, authToken) => {
+export default useBackgroundGeolocation = (authToken) => {
   if (authToken == null) {
     cleanup();
     return;
@@ -13,7 +13,7 @@ export default useBackgroundGeolocation = (debug, authToken) => {
     locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
     desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
     stationaryRadius: 100,
-    debug: debug,
+    debug: DEBUG,
     distanceFilter: 100,
     stopOnTerminate: false,
     startOnBoot: true,
@@ -21,7 +21,7 @@ export default useBackgroundGeolocation = (debug, authToken) => {
     fastestInterval: 15000,
     activitiesInterval: 2000,
     stopOnStillActivity: false,
-    notificationsEnabled: debug,
+    notificationsEnabled: DEBUG,
     saveBatteryOnBackground: true,
     url: `${BASE_URL}/users/location`,
     httpHeaders: {
@@ -48,7 +48,7 @@ export default useBackgroundGeolocation = (debug, authToken) => {
     });
   });
 
-  if (debug) {
+  if (DEBUG) {
     BackgroundGeolocation.on('start', () =>
       console.log('[INFO] BackgroundGeolocation service has started'),
     );

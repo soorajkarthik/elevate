@@ -5,9 +5,9 @@ import MySpinner from './components/MySpinner';
 import { AppContext, useAppMethods } from './context/Context';
 import AuthNavigator from './navigators/AuthNavigator';
 import MainAppNavigator from './navigators/MainAppNavigator';
-import { useStateManager } from './state/State';
+import useFirebaseMessaging from './services/FirebaseMessagingService';
 import useBackgroundGeolocation from './services/LocationService';
-import { DEBUG } from './constants/Values';
+import { useStateManager } from './state/State';
 
 const App = () => {
   // Manage state
@@ -31,9 +31,10 @@ const App = () => {
     dispatch({ type: 'FINISH_LOADING' });
   }, []);
 
-  React.useEffect(() => useBackgroundGeolocation(DEBUG, state.userToken), [
-    state.userToken,
-  ]);
+  React.useEffect(() => {
+    useBackgroundGeolocation(state.userToken);
+    useFirebaseMessaging(state.userToken);
+  }, [state.userToken]);
 
   return (
     <AppContext.Provider value={useAppMethods(dispatch)}>
