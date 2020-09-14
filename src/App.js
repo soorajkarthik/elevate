@@ -8,8 +8,24 @@ import MainAppNavigator from './navigators/MainAppNavigator';
 import useFirebaseMessaging from './services/FirebaseMessagingService';
 import useBackgroundGeolocation from './services/LocationService';
 import { useStateManager } from './state/State';
+import firebase from '@react-native-firebase/app';
 
 const App = () => {
+  const firebaseCredentials = {
+    apiKey: 'AIzaSyCDWgGqHuhUlna7C3ykPyDKZbvOFnqVjBE',
+    authDomain: 'elevate-community.firebaseapp.com',
+    databaseURL: 'https://elevate-community.firebaseio.com',
+    projectId: 'elevate-community',
+    storageBucket: 'elevate-community.appspot.com',
+    messagingSenderId: '216169060889',
+    appId: '1:216169060889:web:f5d79d9661982d05826888',
+    measurementId: 'G-E0HSM2933W',
+  };
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseCredentials);
+  }
+
   // Manage state
   const [state, dispatch] = useStateManager();
 

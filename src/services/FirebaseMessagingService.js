@@ -8,7 +8,7 @@ export default useFirebaseMessaging = (authToken) => {
       return updateToken(deviceToken, authToken);
     });
 
-  return messaging().onTokenRefresh((deviceToken) => {
+  messaging().onTokenRefresh((deviceToken) => {
     updateToken(deviceToken, authToken);
   });
 };
