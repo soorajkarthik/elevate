@@ -63,7 +63,7 @@ export default useBackgroundGeolocation = (authToken) => {
 
     BackgroundGeolocation.on('location', (location) =>
       console.log(
-        `[INFO] Location update received: lat: ${location.latitude}, lng: ${location.latitude}`,
+        `[INFO] Location update received: lat: ${location.latitude}, lng: ${location.longitude}`,
       ),
     );
   }
