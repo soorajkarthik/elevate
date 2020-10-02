@@ -1,4 +1,8 @@
-import notifee, { IOSAuthorizationStatus } from '@notifee/react-native';
+import notifee, {
+  AndroidImportance,
+  AndroidStyle,
+  IOSAuthorizationStatus,
+} from '@notifee/react-native';
 import messaging from '@react-native-firebase/messaging';
 import { Alert, Platform } from 'react-native';
 import { updateToken } from '../requests/FirebaseRequests';
@@ -30,16 +34,26 @@ export default useFirebaseMessaging = (authToken) => {
     }
 
     let channelId = await notifee.createChannel({
-      id: 'default',
-      name: 'Default Channel',
+      id: 'alerts',
+      name: 'Elevate Alerts',
     });
 
     await notifee.displayNotification({
-      title: remoteMessage.data.title,
+      title: `<h1>${remoteMessage.data.title}</h1>`,
       subtitle: '\u26A0\uFE0F',
       body: remoteMessage.data.message,
       android: {
         channelId,
+        sound: 'default',
+        importance: AndroidImportance.HIGH,
+        showTimestamp: true,
+        smallIcon: 'ic_launcher_round',
+        style: { type: AndroidStyle.BIGTEXT, text: remoteMessage.data.message },
+        vibrationPattern: [1500, 200, 1500, 200, 1500, 200],
+      },
+      ios: {
+        critical: true,
+        criticalVolume: 1,
       },
     });
   });
