@@ -2,6 +2,7 @@ import notifee, { IOSAuthorizationStatus } from '@notifee/react-native';
 import messaging from '@react-native-firebase/messaging';
 import { Alert, Platform } from 'react-native';
 import { updateToken } from '../requests/FirebaseRequests';
+
 export default useFirebaseMessaging = (authToken) => {
   messaging()
     .getToken()
@@ -28,9 +29,22 @@ export default useFirebaseMessaging = (authToken) => {
       return;
     }
 
-    notifee.displayNotification({
-      title: remoteMessage.data.title,
-      body: remoteMessage.data.message,
+    let channelId = await notifee.createChannel({
+      id: 'default',
+      name: 'Default Channel',
     });
+
+    await notifee.displayNotification({
+      title: remoteMessage.data.title,
+      subtitle: '\u26A0\uFE0F',
+      body: remoteMessage.data.message,
+      android: {
+        channelId,
+      },
+    });
+  });
+
+  notifee.onBackgroundEvent(async (event) => {
+    console.log(event);
   });
 };
