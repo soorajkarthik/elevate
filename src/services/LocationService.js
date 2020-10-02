@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { Alert } from 'react-native';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import { BASE_URL, DEBUG } from '../constants/Values';
+import { Alert } from 'react-native';
+import { BASE_URL, DEBUG } from '../Environment';
 
 export default useBackgroundGeolocation = (authToken) => {
   if (authToken == null) {

@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { BASE_URL } from '../constants/Values';
+import { BASE_URL } from '../Environment';
 export const updateToken = (deviceToken, authToken) => {
   Axios.put(
     `${BASE_URL}/users/deviceTokens`,

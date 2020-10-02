@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Axios from 'axios';
 import { Alert } from 'react-native';
 import Toast from 'react-native-simple-toast';
-import { BASE_URL } from '../constants/Values';
+import { BASE_URL } from '../Environment';
 
 export const signIn = async (data, dispatch) => {
   dispatch({ type: 'START_LOADING' });

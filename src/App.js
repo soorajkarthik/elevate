@@ -1,15 +1,15 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import firebase from '@react-native-firebase/app';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import MySpinner from './components/MySpinner';
 import { AppContext, useAppMethods } from './context/Context';
+import { firebaseCredentials } from './Environment';
 import AuthNavigator from './navigators/AuthNavigator';
 import MainAppNavigator from './navigators/MainAppNavigator';
 import useFirebaseMessaging from './services/FirebaseMessagingService';
 import useBackgroundGeolocation from './services/LocationService';
 import { useStateManager } from './state/State';
-import firebase from '@react-native-firebase/app';
-import { firebaseCredentials } from './environment/Firebase';
 
 const App = () => {
   if (!firebase.apps.length) {

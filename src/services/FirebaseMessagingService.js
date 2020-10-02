@@ -1,7 +1,7 @@
+import notifee, { IOSAuthorizationStatus } from '@notifee/react-native';
 import messaging from '@react-native-firebase/messaging';
 import { Alert, Platform } from 'react-native';
 import { updateToken } from '../requests/FirebaseRequests';
-import notifee, { IOSAuthorizationStatus } from '@notifee/react-native';
 export default useFirebaseMessaging = (authToken) => {
   messaging()
     .getToken()
