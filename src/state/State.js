@@ -13,6 +13,16 @@ export const useStateManager = () => {
             ...prevState,
             userToken: null,
           };
+        case 'FETCHED_ALERTS':
+          return action.alerts.length > 0
+            ? { ...prevState, alerts: action.alerts.concat(prevState.alerts) }
+            : prevState;
+
+        case 'LOCATION_UPDATE':
+          return {
+            ...prevState,
+            location: action.location,
+          };
         case 'START_LOADING':
           return {
             ...prevState,
@@ -28,6 +38,8 @@ export const useStateManager = () => {
     {
       isLoading: true,
       userToken: null,
+      alerts: null,
+      location: null,
     },
   );
 };

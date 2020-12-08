@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { BACKGROUND_COLOR } from '../constants/Colors';
 import TempScreen from '../screens/TempScreen';
+import MapScreen from '../screens/MapScreen';
 
 const Tabs = createMaterialTopTabNavigator();
 
@@ -11,7 +12,7 @@ const HomeScreenNavigator = () => {
     <Tabs.Navigator
       tabBarOptions={{ style: styles.navigator }}
       backBehavior="none">
-      <Tabs.Screen name="Temp" component={TempScreen} />
+      <Tabs.Screen name="Map" component={MapScreen} />
       <Tabs.Screen name="Temp1" component={TempScreen} />
       <Tabs.Screen name="Temp2" component={TempScreen} />
     </Tabs.Navigator>

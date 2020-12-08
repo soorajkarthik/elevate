@@ -20,7 +20,7 @@ class MainAppNavigator extends Component {
       <Drawer.Navigator
         drawerType="front"
         openByDefault={true}
-        edgeWidth={50}
+        edgeWidth={100}
         backBehavior="history"
         drawerStyle={styles.drawer}
         drawerContent={this.drawerContent}>

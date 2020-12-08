@@ -1,8 +1,9 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { Alert } from 'react-native';
 import { BASE_URL, DEBUG } from '../Environment';
+import { fetchAlerts } from '../requests/AlertRequests';
 
-export default useBackgroundGeolocation = (authToken) => {
+export default useBackgroundGeolocation = (authToken, dispatch) => {
   if (authToken == null) {
     cleanup();
     return;
@@ -33,6 +34,17 @@ export default useBackgroundGeolocation = (authToken) => {
     maxLocations: 1,
   });
 
+  BackgroundGeolocation.on('location', (location) => {
+    if (DEBUG) {
+      console.log(
+        `[INFO] Location update received: lat: ${location.latitude}, lng: ${location.longitude}`,
+      );
+    }
+
+    dispatch({ type: 'LOCATION_UPDATE', location: location });
+    refreshAlerts(authToken, location, dispatch);
+  });
+
   BackgroundGeolocation.on('background', () => {
     console.log('[INFO] App is in background');
     BackgroundGeolocation.configure({
@@ -59,13 +71,8 @@ export default useBackgroundGeolocation = (authToken) => {
     BackgroundGeolocation.on('error', (error) =>
       console.log(`[ERROR] BackgroundGeolocation error: ${error}`),
     );
-
-    BackgroundGeolocation.on('location', (location) =>
-      console.log(
-        `[INFO] Location update received: lat: ${location.latitude}, lng: ${location.longitude}`,
-      ),
-    );
   }
+
   BackgroundGeolocation.on('authorization', (status) => {
     console.log(`[INFO] BackgroundGeolocation authorization status: ${status}`);
     if (status !== BackgroundGeolocation.AUTHORIZED) {
@@ -94,6 +101,11 @@ export default useBackgroundGeolocation = (authToken) => {
   BackgroundGeolocation.start();
 
   return cleanup;
+};
+
+const refreshAlerts = (authToken, location, dispatch) => {
+  const alerts = fetchAlerts(authToken, location);
+  dispatch({ type: 'FETCHED_ALERTS', alerts: alerts });
 };
 
 const cleanup = () => {

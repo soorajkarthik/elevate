@@ -38,7 +38,7 @@ const App = () => {
   }, []);
 
   React.useEffect(() => {
-    useBackgroundGeolocation(state.userToken);
+    useBackgroundGeolocation(state.userToken, dispatch);
     useFirebaseMessaging(state.userToken);
   }, [state.userToken]);
 
@@ -46,7 +46,11 @@ const App = () => {
     <AppContext.Provider value={useAppMethods(dispatch)}>
       <NavigationContainer>
         <MySpinner isLoading={state.isLoading} />
-        {state.userToken == null ? <AuthNavigator /> : <MainAppNavigator />}
+        {state.userToken == null ? (
+          <AuthNavigator />
+        ) : (
+          <MainAppNavigator state={state} dispatch={dispatch} />
+        )}
       </NavigationContainer>
     </AppContext.Provider>
   );
