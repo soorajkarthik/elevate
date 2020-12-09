@@ -3,7 +3,7 @@ import firebase from '@react-native-firebase/app';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import MySpinner from './components/MySpinner';
-import { AppContext, useAppMethods } from './context/Context';
+import { AppContext, useAppContext } from './context/Context';
 import { firebaseCredentials } from './Environment';
 import AuthNavigator from './navigators/AuthNavigator';
 import MainAppNavigator from './navigators/MainAppNavigator';
@@ -43,14 +43,10 @@ const App = () => {
   }, [state.userToken]);
 
   return (
-    <AppContext.Provider value={useAppMethods(dispatch)}>
+    <AppContext.Provider value={useAppContext(state, dispatch)}>
       <NavigationContainer>
         <MySpinner isLoading={state.isLoading} />
-        {state.userToken == null ? (
-          <AuthNavigator />
-        ) : (
-          <MainAppNavigator state={state} dispatch={dispatch} />
-        )}
+        {state.userToken == null ? <AuthNavigator /> : <MainAppNavigator />}
       </NavigationContainer>
     </AppContext.Provider>
   );

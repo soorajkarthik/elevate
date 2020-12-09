@@ -17,7 +17,6 @@ export const useStateManager = () => {
           return action.alerts.length > 0
             ? { ...prevState, alerts: action.alerts.concat(prevState.alerts) }
             : prevState;
-
         case 'LOCATION_UPDATE':
           return {
             ...prevState,
