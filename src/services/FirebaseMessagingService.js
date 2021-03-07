@@ -26,7 +26,6 @@ export default useFirebaseMessaging = (authToken) => {
 
   messaging().setBackgroundMessageHandler(async (remoteMessage) => {
     if (
-      Platform.OS == 'ios' &&
       (await notifee.requestPermission()).authorizationStatus <
         IOSAuthorizationStatus.AUTHORIZED
     ) {
