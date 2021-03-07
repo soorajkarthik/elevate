@@ -104,8 +104,8 @@ export default useBackgroundGeolocation = (authToken, dispatch) => {
 };
 
 const refreshAlerts = (authToken, location, dispatch) => {
-  const alerts = fetchAlerts(authToken, location);
-  dispatch({ type: 'FETCHED_ALERTS', alerts: alerts });
+  fetchAlerts(authToken, location)
+    .then((alerts) => dispatch({ type: 'FETCHED_ALERTS', alerts: alerts }))
 };
 
 const cleanup = () => {
