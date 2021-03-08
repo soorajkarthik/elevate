@@ -6,9 +6,9 @@ class MySpinner extends Component {
   render() {
     return (
       <Spinner
-        visible={this.props.isLoading}
+        visible={ this.props.isLoading }
         textContent="Loading..."
-        textStyle={styles.loadingText}
+        textStyle={ styles.loadingText }
         size="large"
       />
     );

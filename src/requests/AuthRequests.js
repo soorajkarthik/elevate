@@ -6,7 +6,7 @@ import { BASE_URL } from '../Environment';
 
 export const signIn = async (data, dispatch) => {
   dispatch({ type: 'START_LOADING' });
-  await Axios.post(`${BASE_URL}/users/login`, {}, { auth: data })
+  await Axios.post(`${ BASE_URL }/users/login`, {}, { auth: data })
     // Login successful
     .then((result) => {
       Toast.showWithGravity(result.data.message, Toast.LONG, Toast.CENTER);
@@ -35,7 +35,7 @@ export const signOut = async (dispatch) => {
 // Sign up the user
 export const signUp = async (data, dispatch) => {
   dispatch({ type: 'START_LOADING' });
-  let result = await Axios.post(`${BASE_URL}/users`, data)
+  let result = await Axios.post(`${ BASE_URL }/users`, data)
     .then(() => {
       Alert.alert(
         'Account Created',
@@ -58,7 +58,7 @@ export const signUp = async (data, dispatch) => {
 // Send password reset email
 export const passwordReset = async (email, dispatch) => {
   dispatch({ type: 'START_LOADING' });
-  let result = await Axios.get(`${BASE_URL}/users/pwordReset?email=${email}`)
+  let result = await Axios.get(`${ BASE_URL }/users/pwordReset?email=${ email }`)
     .then((result) => {
       Toast.showWithGravity(result.data.message, Toast.LONG, Toast.CENTER);
       return true;

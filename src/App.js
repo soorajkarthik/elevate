@@ -26,7 +26,7 @@ const App = () => {
       let userToken = null;
 
       try {
-        userToken = await AsyncStorage.getItem('authToken', () => {});
+        userToken = await AsyncStorage.getItem('authToken', () => { });
       } catch (e) {
         console.log(e);
       }
@@ -43,10 +43,10 @@ const App = () => {
   }, [state.userToken]);
 
   return (
-    <AppContext.Provider value={useAppContext(state, dispatch)}>
+    <AppContext.Provider value={ useAppContext(state, dispatch) }>
       <NavigationContainer>
-        <MySpinner isLoading={state.isLoading} />
-        {state.userToken == null ? <AuthNavigator /> : <MainAppNavigator />}
+        <MySpinner isLoading={ state.isLoading } />
+        { state.userToken == null ? <AuthNavigator /> : <MainAppNavigator /> }
       </NavigationContainer>
     </AppContext.Provider>
   );

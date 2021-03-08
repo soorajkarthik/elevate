@@ -12,7 +12,7 @@ export const useAppContext = (state, dispatch) =>
       signUp: (data) => Auth.signUp(data, dispatch),
       passwordReset: (email) => Auth.passwordReset(email, dispatch),
       getState: () => state,
-      getDispatch: () => dispatch
+      dispatch: (action) => dispatch(action)
     }),
     [state],
   );

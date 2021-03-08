@@ -31,7 +31,7 @@ class SignUpForm extends Component {
     if (!this.validateFields()) return;
 
     const data = {
-      name: `${this.state.firstName} ${this.state.lastName}`,
+      name: `${ this.state.firstName } ${ this.state.lastName }`,
       email: this.state.email,
       password: this.state.password,
     };
@@ -109,91 +109,91 @@ class SignUpForm extends Component {
     return (
       <View>
         {this.state.hasError && (
-          <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
-        )}
+          <Text style={ styles.errorMessage }>{ this.state.errorMessage }</Text>
+        ) }
 
-        <View style={styles.nameInputContainer}>
+        <View style={ styles.nameInputContainer }>
           <TextInput
-            style={styles.nameInput}
+            style={ styles.nameInput }
             placeholder="First Name"
-            placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
-            value={this.state.firstName}
-            onChangeText={(edited) => this.setState({ firstName: edited })}
+            placeholderTextColor={ Colors.TEXT_INPUT_PLACEHOLDER_COLOR }
+            value={ this.state.firstName }
+            onChangeText={ (edited) => this.setState({ firstName: edited }) }
             autoCapitalize="words"
-            autoCorrect={false}
+            autoCorrect={ false }
             returnKeyType="next"
-            onSubmitEditing={() => this.lastNameInput.focus()}
-            ref={(input) => (this.firstNameInput = input)}
+            onSubmitEditing={ () => this.lastNameInput.focus() }
+            ref={ (input) => (this.firstNameInput = input) }
           />
           <TextInput
-            style={styles.nameInput}
+            style={ styles.nameInput }
             placeholder="Last Name"
-            placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
-            value={this.state.lastName}
-            onChangeText={(edited) => this.setState({ lastName: edited })}
+            placeholderTextColor={ Colors.TEXT_INPUT_PLACEHOLDER_COLOR }
+            value={ this.state.lastName }
+            onChangeText={ (edited) => this.setState({ lastName: edited }) }
             autoCapitalize="words"
-            autoCorrect={false}
+            autoCorrect={ false }
             returnKeyType="next"
-            onSubmitEditing={() => this.emailInput.focus()}
-            ref={(input) => (this.lastNameInput = input)}
+            onSubmitEditing={ () => this.emailInput.focus() }
+            ref={ (input) => (this.lastNameInput = input) }
           />
         </View>
         <TextInput
-          style={styles.input}
+          style={ styles.input }
           keyboardType="email-address"
           placeholder="Email"
-          placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
-          value={this.state.email}
-          onChangeText={(edited) => this.setState({ email: edited })}
+          placeholderTextColor={ Colors.TEXT_INPUT_PLACEHOLDER_COLOR }
+          value={ this.state.email }
+          onChangeText={ (edited) => this.setState({ email: edited }) }
           autoCapitalize="none"
-          autoCorrect={false}
+          autoCorrect={ false }
           returnKeyType="next"
-          onSubmitEditing={() => this.passwordInput.focus()}
-          ref={(input) => (this.emailInput = input)}
+          onSubmitEditing={ () => this.passwordInput.focus() }
+          ref={ (input) => (this.emailInput = input) }
         />
         <TextInputMask
           type="custom"
-          options={{
+          options={ {
             mask: '+1 (999) 999-9999',
-          }}
-          style={styles.input}
+          } }
+          style={ styles.input }
           keyboardType="number-pad"
           placeholder="Phone (Optional)"
-          placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
-          value={this.state.phone}
-          onChangeText={(edited) => this.setState({ phone: edited })}
+          placeholderTextColor={ Colors.TEXT_INPUT_PLACEHOLDER_COLOR }
+          value={ this.state.phone }
+          onChangeText={ (edited) => this.setState({ phone: edited }) }
           returnKeyType="next"
-          onSubmitEditing={() => this.passwordInput.focus()}
-          ref={(input) => (this.phoneInput = input)}
+          onSubmitEditing={ () => this.passwordInput.focus() }
+          ref={ (input) => (this.phoneInput = input) }
         />
         <TextInput
-          style={styles.input}
+          style={ styles.input }
           placeholder="Password"
-          placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
-          value={this.state.password}
-          onChangeText={(edited) => this.setState({ password: edited })}
+          placeholderTextColor={ Colors.TEXT_INPUT_PLACEHOLDER_COLOR }
+          value={ this.state.password }
+          onChangeText={ (edited) => this.setState({ password: edited }) }
           secureTextEntry
           returnKeyType="next"
-          onSubmitEditing={() => this.confirmPasswordInput.focus()}
-          ref={(input) => (this.passwordInput = input)}
+          onSubmitEditing={ () => this.confirmPasswordInput.focus() }
+          ref={ (input) => (this.passwordInput = input) }
         />
 
         <TextInput
-          style={styles.input}
+          style={ styles.input }
           placeholder="Confirm Password"
-          placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
-          value={this.state.confirmPassword}
-          onChangeText={(edited) => this.setState({ confirmPassword: edited })}
+          placeholderTextColor={ Colors.TEXT_INPUT_PLACEHOLDER_COLOR }
+          value={ this.state.confirmPassword }
+          onChangeText={ (edited) => this.setState({ confirmPassword: edited }) }
           secureTextEntry
           returnKeyType="go"
-          onSubmitEditing={() => this.signUp()}
-          ref={(input) => (this.confirmPasswordInput = input)}
+          onSubmitEditing={ () => this.signUp() }
+          ref={ (input) => (this.confirmPasswordInput = input) }
         />
 
         <TouchableOpacity
-          style={styles.registerButton}
-          onPress={() => this.signUp()}>
-          <Text style={styles.registerText}>Register</Text>
+          style={ styles.registerButton }
+          onPress={ () => this.signUp() }>
+          <Text style={ styles.registerText }>Register</Text>
         </TouchableOpacity>
       </View>
     );

@@ -19,22 +19,22 @@ class MainAppNavigator extends Component {
     return (
       <Drawer.Navigator
         drawerType="front"
-        openByDefault={true}
-        edgeWidth={100}
+        openByDefault={ true }
+        edgeWidth={ 100 }
         backBehavior="history"
-        drawerStyle={styles.drawer}
-        drawerContent={this.drawerContent}>
-        <Drawer.Screen name="Home" component={HomeScreenNavigator} />
-        <Drawer.Screen name="Profile" component={TempScreen} />
+        drawerStyle={ styles.drawer }
+        drawerContent={ this.drawerContent }>
+        <Drawer.Screen name="Home" component={ HomeScreenNavigator } />
+        <Drawer.Screen name="Profile" component={ TempScreen } />
       </Drawer.Navigator>
     );
   }
 
   drawerContent = (props) => {
     return (
-      <DrawerContentScrollView {...props} style={styles.drawerView}>
-        <DrawerItemList {...props} />
-        <DrawerItem label="Sign Out" onPress={this.signOutAlert} />
+      <DrawerContentScrollView { ...props } style={ styles.drawerView }>
+        <DrawerItemList { ...props } />
+        <DrawerItem label="Sign Out" onPress={ this.signOutAlert } />
       </DrawerContentScrollView>
     );
   };

@@ -16,28 +16,28 @@ import * as Constants from '../constants/Values';
 class SignInScreen extends Component {
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView style={ styles.container }>
         <MyStatusBar />
         <Animatable.View
-          style={styles.headerContainer}
+          style={ styles.headerContainer }
           animation="fadeInDown"
-          duration={2000}>
-          <Image source={require('../assets/banner.png')} style={styles.logo} />
-          <Text style={styles.text}>Welcome back!</Text>
+          duration={ 2000 }>
+          <Image source={ require('../assets/banner.png') } style={ styles.logo } />
+          <Text style={ styles.text }>Welcome back!</Text>
         </Animatable.View>
         <KeyboardAvoidingView
           behavior="padding"
-          keyboardVerticalOffset={Platform.select({
+          keyboardVerticalOffset={ Platform.select({
             ios: () => Constants.IOS_KEYBOARD_PADDING,
             android: () => Constants.ANDROID_KEYBOARD_PADDING,
-          })()}>
+          })() }>
           <Animatable.View
-            style={styles.formContainer}
+            style={ styles.formContainer }
             animation="bounceInUp"
-            delay={200}
-            duration={3000}
+            delay={ 200 }
+            duration={ 3000 }
             easing="ease">
-            <SignInForm navigation={this.props.navigation} />
+            <SignInForm navigation={ this.props.navigation } />
           </Animatable.View>
         </KeyboardAvoidingView>
       </ScrollView>

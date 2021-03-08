@@ -30,23 +30,23 @@ class PasswordResetForm extends Component {
     return (
       <View>
         <TextInput
-          style={styles.input}
+          style={ styles.input }
           keyboardType="email-address"
           placeholder="Email"
-          placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
-          value={this.state.email}
-          onChangeText={(edited) => this.setState({ email: edited })}
+          placeholderTextColor={ Colors.TEXT_INPUT_PLACEHOLDER_COLOR }
+          value={ this.state.email }
+          onChangeText={ (edited) => this.setState({ email: edited }) }
           autoCapitalize="none"
-          autoCorrect={false}
+          autoCorrect={ false }
           returnKeyType="go"
-          onSubmitEditing={() => this.requestReset()}
-          ref={(input) => (this.emailInput = input)}
+          onSubmitEditing={ () => this.requestReset() }
+          ref={ (input) => (this.emailInput = input) }
         />
 
         <TouchableOpacity
-          style={styles.requestButton}
-          onPress={() => this.requestReset()}>
-          <Text style={styles.requestText}>Send reset link</Text>
+          style={ styles.requestButton }
+          onPress={ () => this.requestReset() }>
+          <Text style={ styles.requestText }>Send reset link</Text>
         </TouchableOpacity>
       </View>
     );

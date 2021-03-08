@@ -14,11 +14,11 @@ class HomeScreenNavigator extends Component {
 
     return (
       <Tabs.Navigator
-        tabBarOptions={{ style: styles.navigator }}
+        tabBarOptions={ { style: styles.navigator } }
         backBehavior="none">
-        <Tabs.Screen name="Map" component={MapScreen} />
-        <Tabs.Screen name="Temp1" component={TempScreen} />
-        <Tabs.Screen name="Temp2" component={TempScreen} />
+        <Tabs.Screen name="Map" component={ MapScreen } />
+        <Tabs.Screen name="Temp1" component={ TempScreen } />
+        <Tabs.Screen name="Temp2" component={ TempScreen } />
       </Tabs.Navigator>
     );
   }

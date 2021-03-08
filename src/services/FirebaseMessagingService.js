@@ -27,7 +27,7 @@ export default useFirebaseMessaging = (authToken) => {
   messaging().setBackgroundMessageHandler(async (remoteMessage) => {
     if (
       (await notifee.requestPermission()).authorizationStatus <
-        IOSAuthorizationStatus.AUTHORIZED
+      IOSAuthorizationStatus.AUTHORIZED
     ) {
       return;
     }
@@ -38,7 +38,7 @@ export default useFirebaseMessaging = (authToken) => {
     });
 
     await notifee.displayNotification({
-      title: `<h1>${remoteMessage.data.title}</h1>`,
+      title: `<h1>${ remoteMessage.data.title }</h1>`,
       subtitle: '\u26A0\uFE0F',
       body: remoteMessage.data.message,
       android: {

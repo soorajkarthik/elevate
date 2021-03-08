@@ -15,28 +15,28 @@ import * as Constants from '../constants/Values';
 class SignUpScreen extends Component {
   render() {
     return (
-      <ScrollView style={styles.container} endFillColor={Colors.ACCENT_COLOR}>
+      <ScrollView style={ styles.container } endFillColor={ Colors.ACCENT_COLOR }>
         <MyStatusBar />
         <Animatable.View
-          style={styles.headerContainer}
+          style={ styles.headerContainer }
           animation="fadeInDown"
-          duration={2000}>
-          <Image style={styles.logo} source={require('../assets/banner.png')} />
-          <Text style={styles.text}>Lets get started!</Text>
+          duration={ 2000 }>
+          <Image style={ styles.logo } source={ require('../assets/banner.png') } />
+          <Text style={ styles.text }>Lets get started!</Text>
         </Animatable.View>
         <KeyboardAvoidingView
           behavior="padding"
-          keyboardVerticalOffset={Platform.select({
+          keyboardVerticalOffset={ Platform.select({
             ios: () => Constants.IOS_KEYBOARD_PADDING,
             android: () => Constants.ANDROID_KEYBOARD_PADDING,
-          })()}>
+          })() }>
           <Animatable.View
-            style={styles.formContainer}
+            style={ styles.formContainer }
             animation="bounceInUp"
-            delay={200}
-            duration={3000}
+            delay={ 200 }
+            duration={ 3000 }
             easing="ease">
-            <SignUpForm navigation={this.props.navigation} />
+            <SignUpForm navigation={ this.props.navigation } />
           </Animatable.View>
         </KeyboardAvoidingView>
       </ScrollView>

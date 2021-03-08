@@ -14,9 +14,12 @@ export const useStateManager = () => {
             userToken: null,
           };
         case 'FETCHED_ALERTS':
-          return action.alerts.length > 0
-            ? { ...prevState, alerts: action.alerts.concat(prevState.alerts) }
-            : prevState;
+          var combined = [...prevState.alerts, ...action.alerts];
+          return {
+            ...prevState,
+            alerts: Array.from(new Set(combined.map(alert => alert["id"])))
+              .map(id => combined.find(alert => alert["id"] === id))
+          };
         case 'LOCATION_UPDATE':
           return {
             ...prevState,
@@ -37,7 +40,7 @@ export const useStateManager = () => {
     {
       isLoading: true,
       userToken: null,
-      alerts: null,
+      alerts: [],
       location: null,
     },
   );

@@ -29,46 +29,46 @@ class SignInForm extends Component {
     return (
       <View>
         <TextInput
-          style={styles.input}
+          style={ styles.input }
           keyboardType="email-address"
           placeholder="Email"
-          placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
+          placeholderTextColor={ Colors.TEXT_INPUT_PLACEHOLDER_COLOR }
           autoCapitalize="none"
-          autoCorrect={false}
+          autoCorrect={ false }
           returnKeyType="next"
-          text={this.state.username}
-          onChangeText={(edited) => this.setState({ username: edited })}
-          onSubmitEditing={() => this.passwordInput.focus()}
+          text={ this.state.username }
+          onChangeText={ (edited) => this.setState({ username: edited }) }
+          onSubmitEditing={ () => this.passwordInput.focus() }
         />
 
         <TextInput
-          style={styles.input}
+          style={ styles.input }
           secureTextEntry
           placeholder="Password"
-          placeholderTextColor={Colors.TEXT_INPUT_PLACEHOLDER_COLOR}
+          placeholderTextColor={ Colors.TEXT_INPUT_PLACEHOLDER_COLOR }
           returnKeyType="go"
-          text={this.state.password}
-          onChangeText={(edited) => this.setState({ password: edited })}
-          onSubmitEditing={() => this.signIn()} // Call login method
-          ref={(input) => (this.passwordInput = input)}
+          text={ this.state.password }
+          onChangeText={ (edited) => this.setState({ password: edited }) }
+          onSubmitEditing={ () => this.signIn() } // Call login method
+          ref={ (input) => (this.passwordInput = input) }
         />
 
         <TouchableOpacity
-          style={styles.passwordResetButton}
-          onPress={() => this.props.navigation.navigate('PasswordReset')}>
-          <Text style={styles.clickableText}>Forgot Password?</Text>
+          style={ styles.passwordResetButton }
+          onPress={ () => this.props.navigation.navigate('PasswordReset') }>
+          <Text style={ styles.clickableText }>Forgot Password?</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.loginButton}
-          onPress={() => this.signIn()}>
-          <Text style={styles.loginText}>Login</Text>
+          style={ styles.loginButton }
+          onPress={ () => this.signIn() }>
+          <Text style={ styles.loginText }>Login</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.signUpButton}
-          onPress={() => this.props.navigation.navigate('SignUp')}>
-          <Text style={styles.clickableText}>
+          style={ styles.signUpButton }
+          onPress={ () => this.props.navigation.navigate('SignUp') }>
+          <Text style={ styles.clickableText }>
             Don't have an account? Sign Up!
           </Text>
         </TouchableOpacity>

@@ -15,31 +15,31 @@ import * as Constants from '../constants/Values';
 class PasswordResetScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={ styles.container }>
         <MyStatusBar />
         <Animatable.View
-          style={styles.headerContainer}
+          style={ styles.headerContainer }
           animation="fadeInDown"
-          duration={2000}>
-          <Image style={styles.logo} source={require('../assets/banner.png')} />
-          <Text style={styles.text}>
+          duration={ 2000 }>
+          <Image style={ styles.logo } source={ require('../assets/banner.png') } />
+          <Text style={ styles.text }>
             Lets get you a new password! Just enter your email and we'll send
             you a link to reset your password.
           </Text>
         </Animatable.View>
         <KeyboardAvoidingView
-          style={styles.formContainerWrapper}
+          style={ styles.formContainerWrapper }
           behavior="padding"
-          keyboardVerticalOffset={Platform.select({
+          keyboardVerticalOffset={ Platform.select({
             ios: () => Constants.IOS_KEYBOARD_PADDING,
             android: () => Constants.ANDROID_KEYBOARD_PADDING,
-          })()}>
+          })() }>
           <Animatable.View
-            style={styles.formContainer}
+            style={ styles.formContainer }
             animation="bounceInUp"
-            delay={200}
-            duration={3000}>
-            <PasswordResetForm navigation={this.props.navigation} />
+            delay={ 200 }
+            duration={ 3000 }>
+            <PasswordResetForm navigation={ this.props.navigation } />
           </Animatable.View>
         </KeyboardAvoidingView>
       </View>

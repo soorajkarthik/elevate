@@ -12,18 +12,18 @@ const AuthNavigator = () => {
     <Stack.Navigator headerMode="screen">
       <Stack.Screen
         name="Login"
-        component={SignInScreen}
-        options={headerOptions.mainScreen}
+        component={ SignInScreen }
+        options={ headerOptions.mainScreen }
       />
       <Stack.Screen
         name="SignUp"
-        component={SignUpScreen}
-        options={headerOptions.childScreens}
+        component={ SignUpScreen }
+        options={ headerOptions.childScreens }
       />
       <Stack.Screen
         name="PasswordReset"
-        component={PasswordResetScreen}
-        options={headerOptions.childScreens}
+        component={ PasswordResetScreen }
+        options={ headerOptions.childScreens }
       />
     </Stack.Navigator>
   );

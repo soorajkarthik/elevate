@@ -23,9 +23,9 @@ export default useBackgroundGeolocation = (authToken, dispatch) => {
     stopOnStillActivity: false,
     notificationsEnabled: DEBUG,
     saveBatteryOnBackground: true,
-    url: `${BASE_URL}/users/location`,
+    url: `${ BASE_URL }/users/location`,
     httpHeaders: {
-      Authorization: `Bearer ${authToken}`,
+      Authorization: `Bearer ${ authToken }`,
     },
     postTemplate: {
       latitude: '@latitude',
@@ -37,7 +37,7 @@ export default useBackgroundGeolocation = (authToken, dispatch) => {
   BackgroundGeolocation.on('location', (location) => {
     if (DEBUG) {
       console.log(
-        `[INFO] Location update received: lat: ${location.latitude}, lng: ${location.longitude}`,
+        `[INFO] Location update received: lat: ${ location.latitude }, lng: ${ location.longitude }`,
       );
     }
 
@@ -69,12 +69,12 @@ export default useBackgroundGeolocation = (authToken, dispatch) => {
     );
 
     BackgroundGeolocation.on('error', (error) =>
-      console.log(`[ERROR] BackgroundGeolocation error: ${error}`),
+      console.log(`[ERROR] BackgroundGeolocation error: ${ error }`),
     );
   }
 
   BackgroundGeolocation.on('authorization', (status) => {
-    console.log(`[INFO] BackgroundGeolocation authorization status: ${status}`);
+    console.log(`[INFO] BackgroundGeolocation authorization status: ${ status }`);
     if (status !== BackgroundGeolocation.AUTHORIZED) {
       setTimeout(
         () =>
@@ -105,7 +105,7 @@ export default useBackgroundGeolocation = (authToken, dispatch) => {
 
 const refreshAlerts = (authToken, location, dispatch) => {
   fetchAlerts(authToken, location)
-    .then((alerts) => dispatch({ type: 'FETCHED_ALERTS', alerts: alerts }))
+    .then((alerts) => dispatch({ type: 'FETCHED_ALERTS', alerts: alerts }));
 };
 
 const cleanup = () => {
