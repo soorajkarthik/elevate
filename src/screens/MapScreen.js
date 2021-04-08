@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import MyMap from '../components/MyMap';
 import { AppContext } from '../context/Context';
+import MyMap from '../components/MyMap';
+import AlertDetailView from "../components/AlertDetailView";
+import AlertCreationForm from "../components/AlertCreationForm";
 
 
 class MapScreen extends Component {
@@ -10,7 +12,9 @@ class MapScreen extends Component {
   render() {
     return (
       <View style={ styles.container }>
-        <MyMap />
+        <MyMap style={ styles.map } />
+        <AlertDetailView />
+        <AlertCreationForm />
       </View>
     );
   }
@@ -18,11 +22,16 @@ class MapScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: '50%',
+    height: '100%',
     width: '100%',
     alignSelf: 'center',
     alignContent: 'center',
   },
+
+  map: {
+    height: '50%',
+    width: '100%'
+  }
 });
 
 export default MapScreen;

@@ -20,6 +20,16 @@ export const useStateManager = () => {
             alerts: Array.from(new Set(combined.map(alert => alert["id"])))
               .map(id => combined.find(alert => alert["id"] === id))
           };
+        case 'MARKER_CLICKED':
+          return {
+            ...prevState,
+            focusedAlert: action.alert
+          };
+        case 'MARKER_DESELECTED':
+          return {
+            ...prevState,
+            focusedAlert: null
+          };
         case 'LOCATION_UPDATE':
           return {
             ...prevState,
@@ -41,6 +51,7 @@ export const useStateManager = () => {
       isLoading: true,
       userToken: null,
       alerts: [],
+      focusedAlert: null,
       location: null,
     },
   );
