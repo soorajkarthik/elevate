@@ -8,29 +8,27 @@ class MyMap extends Component {
 
     render() {
         return (
-            <View style={ this.props.style }>
-                <MapView
-                    style={ styles.map }
-                    pitchEnabled
-                    provider={ PROVIDER_GOOGLE }
-                    showsUserLocation={ true }
-                    followsUserLocation={ true }
-                >
-                    {
-                        this.context.getState().alerts.map((alert, index) => {
-                            return <Marker
-                                key={ index }
-                                coordinate={ { latitude: alert["latitude"], longitude: alert["longitude"] } }
-                                description={ alert["description"] }
-                                title={ alert["alertType"]["name"] }
-                                style={ styles.marker }
-                                onPress={ () => this.context.dispatch({ type: 'MARKER_CLICKED', alert: alert }) }
-                                onSelect={ () => this.context.dispatch({ type: 'MARKER_CLICKED', alert: alert }) }
-                            />;
-                        })
-                    }
-                </MapView>
-            </View>
+            <MapView
+                style={ styles.map }
+                pitchEnabled
+                provider={ PROVIDER_GOOGLE }
+                showsUserLocation={ true }
+                followsUserLocation={ true }
+            >
+                {
+                    this.context.getState().alerts.map((alert, index) => {
+                        return <Marker
+                            key={ index }
+                            coordinate={ { latitude: alert["latitude"], longitude: alert["longitude"] } }
+                            description={ alert["description"] }
+                            title={ alert["alertType"]["name"] }
+                            style={ styles.marker }
+                            onPress={ () => this.context.dispatch({ type: 'MARKER_CLICKED', alert: alert }) }
+                            onSelect={ () => this.context.dispatch({ type: 'MARKER_CLICKED', alert: alert }) }
+                        />;
+                    })
+                }
+            </MapView>
         );
     }
 }
@@ -38,10 +36,8 @@ class MyMap extends Component {
 const styles = StyleSheet.create({
     map: {
         ...StyleSheet.absoluteFillObject,
-        marginTop: 10,
         alignSelf: 'center',
     },
-
 });
 
 export default MyMap;
