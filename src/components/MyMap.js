@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { AppContext } from '../context/Context';
+import { fetchAlertsViewport } from "../requests/AlertRequests";
 
 class MyMap extends Component {
     static contextType = AppContext;
+
+    refreshAlerts(region) {
+        const authToken = this.context.getState().userToken;
+
+        fetchAlertsViewport(authToken, region)
+            .then((alerts) => this.context.dispatch({ type: 'FETCHED_ALERTS', alerts: alerts }));
+    }
 
     render() {
         return (
@@ -13,7 +21,9 @@ class MyMap extends Component {
                 pitchEnabled
                 provider={ PROVIDER_GOOGLE }
                 showsUserLocation={ true }
+                showsMyLocationButton={ true }
                 followsUserLocation={ true }
+                onRegionChangeComplete={ (region) => this.refreshAlerts(region) }
             >
                 {
                     this.context.getState().alerts.map((alert, index) => {

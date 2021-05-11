@@ -1,9 +1,9 @@
 import Axios from 'axios';
 import { BASE_URL } from '../Environment';
 
-export const fetchAlerts = async (authToken, location) => {
+export const fetchAlertsViewport = async (authToken, region) => {
   return await Axios.get(
-    `${ BASE_URL }/alerts?lat=${ location.latitude }&lng=${ location.longitude }&radius=4`,
+    `${ BASE_URL }/alerts?lat=${ region.latitude }&lng=${ region.longitude }&lat_delta=${ region.latitudeDelta }&lng_delta=${ region.longitudeDelta }`,
     { headers: { Authorization: `Bearer ${ authToken }` } },
   )
     .then((result) => result.data)

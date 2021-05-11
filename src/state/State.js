@@ -14,6 +14,7 @@ export const useStateManager = () => {
             userToken: null,
           };
         case 'FETCHED_ALERTS':
+          console.log(action.alerts);
           var combined = [...prevState.alerts, ...action.alerts];
           return {
             ...prevState,

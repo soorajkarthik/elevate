@@ -24,18 +24,13 @@ class MapScreen extends Component {
           <MyMap />
         </Animatable.View>
         <Animatable.View
-          style={ styles.actionContainer }
+          style={ styles.detailContainer }
           animation="bounceInUp"
           delay={ 500 }
           duration={ 3000 }
           easing="ease"
         >
-          <AlertDetailView style={ styles.detailView } />
-          <TouchableOpacity
-            style={ styles.createButton }
-            onPress={ () => console.log("press") }>
-            <Text style={ styles.createText }>Create Alert</Text>
-          </TouchableOpacity>
+          <AlertDetailView />
         </Animatable.View>
       </View>
     );
@@ -52,7 +47,7 @@ const styles = StyleSheet.create({
   },
 
   mapContainer: {
-    flex: 3,
+    flex: 2,
     width: '100%',
     overflow: "hidden",
     alignItems: "center",
@@ -61,34 +56,14 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 50,
   },
 
-  actionContainer: {
-    flex: 2,
+  detailContainer: {
+    flex: 1,
     paddingTop: 50,
     backgroundColor: Colors.PRIMARY_COLOR,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
     alignItems: "center"
-  },
-
-  detailView: {
-    flex: 7
-  },
-
-  createButton: {
-    backgroundColor: Colors.ACCENT_COLOR,
-    borderRadius: 10,
-    paddingHorizontal: 50,
-    marginBottom: 15,
-    alignItems: 'center',
-    paddingVertical: 7,
-    flex: 1
-  },
-
-  createText: {
-    fontSize: 20,
-    fontWeight: '300',
-    color: Colors.BUTTON_TEXT_COLOR,
-  },
+  }
 });
 
 export default MapScreen;

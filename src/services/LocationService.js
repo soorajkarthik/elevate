@@ -1,13 +1,14 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { Alert } from 'react-native';
 import { BASE_URL, DEBUG } from '../Environment';
-import { fetchAlerts } from '../requests/AlertRequests';
 
 export default useBackgroundGeolocation = (authToken, dispatch) => {
   if (authToken == null) {
     cleanup();
     return;
   }
+
+  BackgroundGeolocation.removeAllListeners();
 
   BackgroundGeolocation.configure({
     locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
@@ -42,7 +43,6 @@ export default useBackgroundGeolocation = (authToken, dispatch) => {
     }
 
     dispatch({ type: 'LOCATION_UPDATE', location: location });
-    refreshAlerts(authToken, location, dispatch);
   });
 
   BackgroundGeolocation.on('background', () => {
@@ -101,11 +101,6 @@ export default useBackgroundGeolocation = (authToken, dispatch) => {
   BackgroundGeolocation.start();
 
   return cleanup;
-};
-
-const refreshAlerts = (authToken, location, dispatch) => {
-  fetchAlerts(authToken, location)
-    .then((alerts) => dispatch({ type: 'FETCHED_ALERTS', alerts: alerts }));
 };
 
 const cleanup = () => {
