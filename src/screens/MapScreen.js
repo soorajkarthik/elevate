@@ -21,7 +21,7 @@ class MapScreen extends Component {
           duration={ 3000 }
           easing="ease"
         >
-          <MyMap />
+          <MyMap style={ styles.map } />
         </Animatable.View>
         <Animatable.View
           style={ styles.detailContainer }
@@ -54,6 +54,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
+  },
+
+  map: {
+    width: "100%",
+    height: "100%"
   },
 
   detailContainer: {

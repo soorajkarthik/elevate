@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { BACK_BUTTON_COLOR } from '../constants/Colors';
+import { BUTTON_ICON_COLOR } from '../constants/Colors';
 import PasswordResetScreen from '../screens/PasswordResetScreen';
 import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
@@ -37,7 +37,7 @@ const headerOptions = {
   childScreens: {
     headerTitle: '',
     headerTransparent: true,
-    headerTintColor: BACK_BUTTON_COLOR,
+    headerTintColor: BUTTON_ICON_COLOR,
   },
 };
 

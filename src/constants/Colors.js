@@ -1,8 +1,9 @@
 export const PRIMARY_COLOR = '#42a5ff';
 export const ACCENT_COLOR = '#0045cf';
+export const ACCENT_COLOR_OPAQUE = 'rgba(0, 69, 207, 0.2)';
 export const BACKGROUND_COLOR = '#f0faff';
 export const BUTTON_TEXT_COLOR = 'rgba(255,255,255,0.85)';
-export const BACK_BUTTON_COLOR = 'rgba(0,69,207,0.7)';
+export const BUTTON_ICON_COLOR = 'rgba(0,69,207,0.7)';
 export const TEXT_INPUT_BACKROUND_COLOR = 'rgba(255,255,255,0.2)';
 export const TEXT_INPUT_PLACEHOLDER_COLOR = 'rgba(255,255,255,0.7)';
 export const TEXT_INPUT_TEXT_COLOR = 'white';
