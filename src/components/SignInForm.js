@@ -80,7 +80,7 @@ class SignInForm extends Component {
 const styles = StyleSheet.create({
   input: {
     backgroundColor: Colors.TEXT_INPUT_BACKROUND_COLOR,
-    color: 'white',
+    color: Colors.LIGHT_TEXT_COLOR,
     fontSize: 20,
     paddingHorizontal: 20,
     borderRadius: 10,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Linking } from 'react-native';
 import { AppContext } from '../context/Context';
+import * as Colors from "../constants/Colors";
 
 class AlertDetailView extends Component {
     static contextType = AppContext;
@@ -29,6 +30,36 @@ class AlertDetailView extends Component {
         return R * c;
     }
 
+    linkToEmail(alert) {
+        let url = `mailto:${ alert["userInfo"]["email"] }?subject=Re: ${ alert["alertType"]["name"] } Alert on Elevate`;
+        if (Linking.canOpenURL(url)) {
+            Linking.openURL(url);
+        }
+    }
+
+    linkToPhone(alert) {
+        let url = `tel:${ alert["userInfo"]["phone"] }`;
+        if (Linking.canOpenURL(url)) {
+            Linking.openURL(url);
+        }
+    }
+
+    linkToAddress(alert) {
+        const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+        const latLng = `${ alert["latitude"] },${ alert["longitude"] }`;
+        const label = alert["place"];
+
+        const url = Platform.select({
+            ios: `${ scheme }${ label }@${ latLng }`,
+            android: `${ scheme }${ latLng }(${ label })`
+        });
+
+
+        if (Linking.canOpenURL(url)) {
+            Linking.openURL(url);
+        }
+    }
+
     render() {
         let focusedAlert = this.context.getState().focusedAlert;
 
@@ -37,18 +68,38 @@ class AlertDetailView extends Component {
             let distance = this.calculateDistance(focusedAlert, this.context.getState().location);
 
             return (
-                <View style={ { ...this.props.style, ...styles.container } }>
-                    <Text>Created By: { userInfo["name"] }</Text>
-                    {userInfo["email"] ? <Text>Email: { userInfo["email"] }</Text> : null }
-                    {userInfo["phone"] ? <Text>Phone: { userInfo["phone"] }</Text> : null }
-                    <Text>{ focusedAlert["alertType"]["name"] } { distance.toFixed(1) } miles away:</Text>
-                    <Text>{ focusedAlert["description"] }</Text>
-                    <Text>Address: { focusedAlert["place"] }</Text>
-                </View>
+                <ScrollView style={ this.props.style }>
+                    <Text style={ styles.detailText }>Created By: { userInfo["name"] }</Text>
+                    {
+                        userInfo["email"] ? (
+                            <Text style={ styles.detailText }>
+                                Email: <Text style={ styles.linkText } onPress={ () => this.linkToEmail(focusedAlert) }>
+                                    { userInfo["email"] }
+                                </Text>
+                            </Text>
+                        ) : null
+                    }
+                    {
+                        userInfo["phone"] ? (
+                            <Text style={ styles.detailText }>
+                                Phone: <Text style={ styles.linkText } onPress={ () => this.linkToPhone(focusedAlert) }>
+                                    { userInfo["phone"] }
+                                </Text>
+                            </Text>
+                        ) : null
+                    }
+                    <Text style={ styles.detailText }>
+                        { focusedAlert["alertType"]["name"] } { distance.toFixed(1) } miles away at
+                        <Text style={ styles.linkText } onPress={ () => this.linkToAddress(focusedAlert) }>
+                            { focusedAlert["place"] }
+                        </Text>
+                    </Text>
+                    <Text style={ styles.detailText }>Description: { focusedAlert["description"] }</Text>
+                </ScrollView>
             );
         } else {
             return (
-                <View style={ { ...this.props.style, ...styles.container } }>
+                <View style={ this.props.style }>
                     <Text style={ styles.promptText }>Click on an alert marker on the map to view more details!</Text>
                 </View>
             );
@@ -57,10 +108,21 @@ class AlertDetailView extends Component {
 }
 
 const styles = StyleSheet.create({
+    detailText: {
+        fontSize: 17,
+        fontWeight: "300",
+        color: Colors.LIGHT_TEXT_COLOR
+    },
+
+    linkText: {
+        textDecorationLine: "underline",
+        color: Colors.LIGHT_LINK_COLOR
+    },
+
     promptText: {
         fontSize: 20,
         fontWeight: "300",
-        color: "#000"
+        color: Colors.LIGHT_TEXT_COLOR
     }
 });
 

@@ -30,7 +30,7 @@ class MapScreen extends Component {
           duration={ 3000 }
           easing="ease"
         >
-          <AlertDetailView />
+          <AlertDetailView style={ styles.detailView } />
         </Animatable.View>
       </View>
     );
@@ -63,11 +63,15 @@ const styles = StyleSheet.create({
 
   detailContainer: {
     flex: 1,
-    paddingTop: 50,
     backgroundColor: Colors.PRIMARY_COLOR,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+  detailView: {
+    padding: 50
   }
 });
 

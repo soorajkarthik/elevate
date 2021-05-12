@@ -8,3 +8,5 @@ export const TEXT_INPUT_BACKROUND_COLOR = 'rgba(255,255,255,0.2)';
 export const TEXT_INPUT_PLACEHOLDER_COLOR = 'rgba(255,255,255,0.7)';
 export const TEXT_INPUT_TEXT_COLOR = 'white';
 export const ERROR_MESSAGE_COLOR = 'red';
+export const LIGHT_TEXT_COLOR = '#FFFFFF';
+export const LIGHT_LINK_COLOR = '#DDDDFF';

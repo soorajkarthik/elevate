@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
+import { LIGHT_TEXT_COLOR } from '../constants/Colors';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 class MySpinner extends Component {
@@ -17,7 +18,7 @@ class MySpinner extends Component {
 
 const styles = StyleSheet.create({
   loadingText: {
-    color: '#FFFFFF',
+    color: LIGHT_TEXT_COLOR,
     fontSize: 24,
   },
 });
