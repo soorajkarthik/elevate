@@ -18,9 +18,9 @@ export default useBackgroundGeolocation = (authToken, dispatch) => {
     stopOnTerminate: false,
     startOnBoot: true,
     interval: 60000,
-    fastestInterval: 15000,
-    activitiesInterval: 5000,
-    stopOnStillActivity: true,
+    fastestInterval: 30000,
+    activitiesInterval: 10000,
+    stopOnStillActivity: false, // app crashes when true, but end goal is to get it to work with true
     notificationsEnabled: DEBUG,
     saveBatteryOnBackground: true,
     url: `${ BASE_URL }/users/location`,
