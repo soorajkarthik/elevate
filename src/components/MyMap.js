@@ -17,22 +17,28 @@ class MyMap extends Component {
 
     centerUser = () => {
         let currLocation = this.context.getState().location;
-
-        if (currLocation) {
-            this.map.animateToRegion(
-                {
-                    latitude: currLocation.latitude,
-                    longitude: currLocation.longitude,
-                    latitudeDelta: 0.07,
-                    longitudeDelta: 0.07
-                }, 1000
-            );
-        }
+        currLocation && this.animateToPoint(currLocation.latitude, currLocation.longitude);
     };
 
-    showAlertCreationDialogue = () => {
-        //do cool stuff here to show an alert creation dialogue
+    resetRotation = () => {
+        this.map.animateToBearing(0, 1000);
     };
+
+    markerPressed(alert) {
+        this.context.dispatch({ type: 'MARKER_CLICKED', alert: alert });
+        this.animateToPoint(alert["latitude"], alert["longitude"]);
+    }
+
+    animateToPoint(lat, long) {
+        this.map.animateToRegion(
+            {
+                latitude: lat,
+                longitude: long,
+                latitudeDelta: 0.07,
+                longitudeDelta: 0.07
+            }, 1000
+        );
+    }
 
     render() {
         return (
@@ -40,9 +46,10 @@ class MyMap extends Component {
                 <MapView
                     style={ styles.map }
                     provider={ PROVIDER_GOOGLE }
-                    rotateEnabled={ false }
+                    showsCompass={ false }
                     showsUserLocation={ true }
                     followsUserLocation={ true }
+                    moveOnMarkerPress={ false }
                     onMapReady={ this.centerUser }
                     onRegionChangeComplete={ this.onRegionChangeComplete }
                     ref={ (ref) => this.map = ref }
@@ -54,23 +61,23 @@ class MyMap extends Component {
                                 coordinate={ { latitude: alert["latitude"], longitude: alert["longitude"] } }
                                 description={ alert["description"] }
                                 title={ alert["alertType"]["name"] }
-                                onPress={ () => this.context.dispatch({ type: 'MARKER_CLICKED', alert: alert }) }
-                                onSelect={ () => this.context.dispatch({ type: 'MARKER_CLICKED', alert: alert }) }
+                                onPress={ () => this.markerPressed(alert) }
+                                onSelect={ () => this.markerPressed(alert) }
                             />;
                         })
                     }
                 </MapView>
                 <TouchableOpacity
-                    style={ { ...styles.overlayButton, ...styles.userLocationButton } }
+                    style={ { ...styles.overlayButton, right: 60 } }
+                    onPress={ this.resetRotation }
+                >
+                    <Image source={ require("../assets/compassIcon.png") } style={ styles.icon } />
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={ { ...styles.overlayButton, right: 20 } }
                     onPress={ this.centerUser }
                 >
                     <Image source={ require("../assets/centerIcon.png") } style={ styles.icon } />
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={ { ...styles.overlayButton, ...styles.createButton } }
-                    onPress={ this.showAlertCreationDialogue }
-                >
-                    <Image source={ require("../assets/addIcon.png") } style={ styles.icon } />
                 </TouchableOpacity>
             </View>
         );
@@ -87,7 +94,9 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         borderRadius: 15,
-        backgroundColor: Colors.ACCENT_COLOR_OPAQUE
+        backgroundColor: Colors.ACCENT_COLOR_OPAQUE,
+        position: 'absolute',
+        top: 20,
     },
 
     icon: {
@@ -96,18 +105,6 @@ const styles = StyleSheet.create({
         tintColor: Colors.BUTTON_ICON_COLOR,
         opacity: 1,
     },
-
-    userLocationButton: {
-        position: 'absolute',
-        top: 20,
-        right: 60,
-    },
-
-    createButton: {
-        position: 'absolute',
-        top: 20,
-        right: 20,
-    }
 });
 
 export default MyMap;

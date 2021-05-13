@@ -68,34 +68,36 @@ class AlertDetailView extends Component {
             let distance = this.calculateDistance(focusedAlert, this.context.getState().location);
 
             return (
-                <ScrollView style={ this.props.style }>
-                    <Text style={ styles.detailText }>Created By: { userInfo["name"] }</Text>
-                    {
-                        userInfo["email"] ? (
-                            <Text style={ styles.detailText }>
-                                Email: <Text style={ styles.linkText } onPress={ () => this.linkToEmail(focusedAlert) }>
-                                    { userInfo["email"] }
+                <View style={ this.props.style }>
+                    <ScrollView >
+                        <Text style={ styles.detailText }>Created By: { userInfo["name"] }</Text>
+                        {
+                            userInfo["email"] ? (
+                                <Text style={ styles.detailText }>
+                                    Email: <Text style={ styles.linkText } onPress={ () => this.linkToEmail(focusedAlert) }>
+                                        { userInfo["email"] }
+                                    </Text>
                                 </Text>
-                            </Text>
-                        ) : null
-                    }
-                    {
-                        userInfo["phone"] ? (
-                            <Text style={ styles.detailText }>
-                                Phone: <Text style={ styles.linkText } onPress={ () => this.linkToPhone(focusedAlert) }>
-                                    { userInfo["phone"] }
+                            ) : null
+                        }
+                        {
+                            userInfo["phone"] ? (
+                                <Text style={ styles.detailText }>
+                                    Phone: <Text style={ styles.linkText } onPress={ () => this.linkToPhone(focusedAlert) }>
+                                        { userInfo["phone"] }
+                                    </Text>
                                 </Text>
+                            ) : null
+                        }
+                        <Text style={ styles.detailText }>
+                            { `${ focusedAlert["alertType"]["name"] } ${ distance.toFixed(1) } miles away at ` }
+                            <Text style={ styles.linkText } onPress={ () => this.linkToAddress(focusedAlert) }>
+                                { focusedAlert["place"] }
                             </Text>
-                        ) : null
-                    }
-                    <Text style={ styles.detailText }>
-                        { focusedAlert["alertType"]["name"] } { distance.toFixed(1) } miles away at
-                        <Text style={ styles.linkText } onPress={ () => this.linkToAddress(focusedAlert) }>
-                            { focusedAlert["place"] }
                         </Text>
-                    </Text>
-                    <Text style={ styles.detailText }>Description: { focusedAlert["description"] }</Text>
-                </ScrollView>
+                        <Text style={ styles.detailText }>Description: { focusedAlert["description"] }</Text>
+                    </ScrollView>
+                </View>
             );
         } else {
             return (
@@ -109,7 +111,7 @@ class AlertDetailView extends Component {
 
 const styles = StyleSheet.create({
     detailText: {
-        fontSize: 17,
+        fontSize: 17.25,
         fontWeight: "300",
         color: Colors.LIGHT_TEXT_COLOR
     },
@@ -120,7 +122,7 @@ const styles = StyleSheet.create({
     },
 
     promptText: {
-        fontSize: 20,
+        fontSize: 17.25,
         fontWeight: "300",
         color: Colors.LIGHT_TEXT_COLOR
     }

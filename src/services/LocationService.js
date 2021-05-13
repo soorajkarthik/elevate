@@ -4,7 +4,6 @@ import { BASE_URL, DEBUG } from '../Environment';
 
 export default useBackgroundGeolocation = (authToken, dispatch) => {
   if (authToken == null) {
-    cleanup();
     return;
   }
 
@@ -13,15 +12,15 @@ export default useBackgroundGeolocation = (authToken, dispatch) => {
   BackgroundGeolocation.configure({
     locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
     desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
-    stationaryRadius: 100,
+    stationaryRadius: 200,
     debug: DEBUG,
-    distanceFilter: 100,
+    distanceFilter: 300,
     stopOnTerminate: false,
     startOnBoot: true,
-    interval: 30000,
+    interval: 60000,
     fastestInterval: 15000,
-    activitiesInterval: 2000,
-    stopOnStillActivity: false,
+    activitiesInterval: 5000,
+    stopOnStillActivity: true,
     notificationsEnabled: DEBUG,
     saveBatteryOnBackground: true,
     url: `${ BASE_URL }/users/location`,
@@ -32,7 +31,7 @@ export default useBackgroundGeolocation = (authToken, dispatch) => {
       latitude: '@latitude',
       longitude: '@longitude',
     },
-    maxLocations: 1,
+    maxLocations: 1000,
   });
 
   BackgroundGeolocation.on('location', (location) => {

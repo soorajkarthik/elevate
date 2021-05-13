@@ -31,6 +31,10 @@ class MapScreen extends Component {
           easing="ease"
         >
           <AlertDetailView style={ styles.detailView } />
+          <TouchableOpacity
+            style={ styles.createButton }>
+            <Text style={ styles.createText }>Create Alert</Text>
+          </TouchableOpacity>
         </Animatable.View>
       </View>
     );
@@ -63,16 +67,35 @@ const styles = StyleSheet.create({
 
   detailContainer: {
     flex: 1,
-    backgroundColor: Colors.PRIMARY_COLOR,
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
     alignItems: "center",
     justifyContent: "center"
   },
 
   detailView: {
-    padding: 50
-  }
+    backgroundColor: Colors.PRIMARY_COLOR,
+    borderRadius: 50,
+    paddingHorizontal: 35,
+    paddingVertical: 20,
+    flex: 4,
+    justifyContent: "center"
+  },
+
+  createButton: {
+    backgroundColor: Colors.ACCENT_COLOR,
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    marginHorizontal: 30,
+    alignItems: 'center',
+    paddingVertical: 7,
+    marginVertical: 10,
+    flex: 1
+  },
+
+  createText: {
+    fontSize: 20,
+    fontWeight: '300',
+    color: Colors.BUTTON_TEXT_COLOR,
+  },
 });
 
 export default MapScreen;
