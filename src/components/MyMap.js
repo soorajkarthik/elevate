@@ -47,6 +47,7 @@ class MyMap extends Component {
                     style={ styles.map }
                     provider={ PROVIDER_GOOGLE }
                     showsCompass={ false }
+                    showsMyLocationButton={ false }
                     showsUserLocation={ true }
                     followsUserLocation={ true }
                     moveOnMarkerPress={ false }
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         borderRadius: 15,
-        backgroundColor: Colors.ACCENT_COLOR_OPAQUE,
+        backgroundColor: Colors.ACCENT_COLOR_MORE_TRANSPARENT,
         position: 'absolute',
         top: 20,
     },

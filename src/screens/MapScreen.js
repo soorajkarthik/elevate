@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import AlertDetailView from "../components/AlertDetailView";
+import AlertCreationForm from "../components/AlertCreationForm";
 import MyMap from '../components/MyMap';
 import MyStatusBar from '../components/MyStatusBar';
 import * as Colors from "../constants/Colors";
+import * as Constants from "../constants/Values";
 import { AppContext } from '../context/Context';
 
 
 class MapScreen extends Component {
   static contextType = AppContext;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalVisible: false
+    };
+  }
+
+  toggleModal = () => {
+    this.setState({ modalVisible: !this.state.modalVisible });
+  };
 
   render() {
     return (
@@ -33,9 +46,23 @@ class MapScreen extends Component {
           <AlertDetailView style={ styles.detailView } />
           <TouchableOpacity
             style={ styles.createButton }>
-            <Text style={ styles.createText }>Create Alert</Text>
+            <Text style={ styles.createText } onPress={ this.toggleModal }>Create Alert</Text>
           </TouchableOpacity>
         </Animatable.View>
+        <Modal visible={ this.state.modalVisible } transparent={ true } animationType="fade">
+          <KeyboardAvoidingView
+            behavior="position"
+            keyboardVerticalOffset={ Platform.select({
+              ios: () => Constants.IOS_KEYBOARD_PADDING,
+              android: () => Constants.ANDROID_KEYBOARD_PADDING,
+            })() }>
+            <TouchableWithoutFeedback onPress={ Keyboard.dismiss }>
+              <View style={ styles.modal }>
+                <AlertCreationForm style={ styles.creationForm } closeFunction={ this.toggleModal } />
+              </View>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
+        </Modal>
       </View>
     );
   }
@@ -96,6 +123,21 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     color: Colors.BUTTON_TEXT_COLOR,
   },
+
+  modal: {
+    backgroundColor: Colors.BACKGROUND_COLOR_LESS_TRANSPARENT,
+    justifyContent: 'center',
+    height: "100%"
+  },
+
+  creationForm: {
+    backgroundColor: Colors.PRIMARY_COLOR,
+    borderRadius: 50,
+    padding: 25,
+    marginVertical: 100,
+    marginHorizontal: 30,
+    justifyContent: "center",
+  }
 });
 
 export default MapScreen;
