@@ -14,7 +14,7 @@ class AlertCreationForm extends Component {
     render() {
         return (
             <View style={ this.props.style }>
-                <PlaceSearchTextInput style={ styles.input } />
+                <PlaceSearchTextInput style={ styles.input } resultsStyle={ styles.searchResults } />
                 <View style={ styles.actionContainer }>
                     <TouchableOpacity
                         style={ styles.actionButton }
@@ -64,6 +64,17 @@ const styles = StyleSheet.create({
         marginHorizontal: 30,
         marginBottom: 15,
     },
+
+    searchResults: {
+        justifyContent: 'center',
+        height: 40,
+        borderBottomColor: '#ccc',
+        borderBottomWidth: 1,
+        backgroundColor: Colors.BACKGROUND_COLOR,
+        paddingHorizontal: 10,
+        marginHorizontal: 30,
+        borderRadius: 10
+    }
 });
 
 export default AlertCreationForm;

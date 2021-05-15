@@ -34,8 +34,8 @@ class MyMap extends Component {
             {
                 latitude: lat,
                 longitude: long,
-                latitudeDelta: 0.07,
-                longitudeDelta: 0.07
+                latitudeDelta: 0.02,
+                longitudeDelta: 0.02
             }, 1000
         );
     }
