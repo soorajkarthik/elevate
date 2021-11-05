@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import firebase from '@react-native-firebase/app';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
@@ -26,7 +26,7 @@ const App = () => {
       let userToken = null;
 
       try {
-        userToken = await AsyncStorage.getItem('authToken', () => { });
+        userToken = await useAsyncStorage('authToken').getItem()
       } catch (e) {
         console.log(e);
       }
@@ -43,10 +43,10 @@ const App = () => {
   }, [state.userToken]);
 
   return (
-    <AppContext.Provider value={ useAppContext(state, dispatch) }>
+    <AppContext.Provider value={useAppContext(state, dispatch)}>
       <NavigationContainer>
-        <MySpinner isLoading={ state.isLoading } />
-        { state.userToken == null ? <AuthNavigator /> : <MainAppNavigator /> }
+        <MySpinner isLoading={state.isLoading} />
+        {state.userToken == null ? <AuthNavigator /> : <MainAppNavigator />}
       </NavigationContainer>
     </AppContext.Provider>
   );
